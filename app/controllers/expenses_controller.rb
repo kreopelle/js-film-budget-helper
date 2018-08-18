@@ -1,12 +1,12 @@
 class ExpensesController < ApplicationController
   before_action :require_login
+  before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
     @expenses = Expense.all
   end
 
   def show
-    @expense = Expense.find(params[:id])
   end
 
   def new
@@ -26,12 +26,20 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    @expense.update(expense_params)
+    redirect_to expense_path(@expense)
   end
 
   def destroy
+    @expense.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private
+
+  def set_expense
+    @expense = Expense.find(params[:id])
+  end
 
   def expense_params
     params.require(:expense).permit(:vendor, :date, :location, :department, :user_id, :production_id, :total)
