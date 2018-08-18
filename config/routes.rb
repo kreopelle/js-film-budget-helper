@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   resources :productions, only: [:new, :create, :edit, :update, :show]
   resources :users, only: [:new, :create, :edit, :update, :show]
+
+  resources :users do
+    resources :expenses, only: [:show, :index]
+  end
+
+  resources :productions do
+    resources :expenses, only: [:show, :index]
+  end 
+
   resources :expenses
 
   get "/login" => "sessions#new"

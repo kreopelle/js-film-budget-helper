@@ -1,0 +1,12 @@
+<%= form_for @expense do |f| %>
+  <%= f.label :vendor %>
+  <%= f.text_field :vendor %><br>
+
+  <%= f.label :date %>
+  <%= f.date_field :date %><br>
+
+  <%= f.label :total %>
+  <%= f.number_field :total %>
+
+  <%= f.submit %>
+<% end %> 
