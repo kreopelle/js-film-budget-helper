@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_132349) do
+ActiveRecord::Schema.define(version: 2018_08_18_134119) do
 
   create_table "expenses", force: :cascade do |t|
-    t.decimal "amount", precision: 11, scale: 2
     t.string "vendor"
     t.datetime "date"
     t.string "location"
@@ -22,13 +21,14 @@ ActiveRecord::Schema.define(version: 2018_08_18_132349) do
     t.integer "production_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "total", precision: 10, scale: 2
   end
 
   create_table "productions", force: :cascade do |t|
     t.string "name"
-    t.decimal "budget", precision: 11, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "budget", precision: 10, scale: 2
   end
 
   create_table "users", force: :cascade do |t|
