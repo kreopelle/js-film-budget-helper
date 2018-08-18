@@ -29,6 +29,7 @@ Production Model
 - has_many users, through expenses?
 - has_many expenses
 
+* only users can create expenses? 
 
 * only admins have access to create_production, edit_production and assign_user_to_production
 
