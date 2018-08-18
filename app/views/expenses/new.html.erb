@@ -12,12 +12,14 @@
   <%= f.date_field :date %><br>
 
   <%= f.label :total %>
-  <%= f.number_field :total %>
+  <%= f.number_field :total, min: 0.01, max: 999999.99, step: 0.01 %><br>
 
-  <%= f.label :production_id "Production" %>
-  <%= f.collection_select :production_id, Production.all, :id, :name %>
+  <%= f.label :production_id, "Production" %>
+  <%= f.collection_select :production_id, Production.all, :id, :name %><br>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <%= f.submit %>
 <% end %>
+<!--
+<input type="number" name="total" id="total" min="0.01" step="0.01" max="9999.99"/> -->

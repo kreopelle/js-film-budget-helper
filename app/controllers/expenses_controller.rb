@@ -2,9 +2,11 @@ class ExpensesController < ApplicationController
   before_action :require_login
 
   def index
+    @expenses = Expense.all
   end
 
   def show
+    @expense = Expense.find(params[:id])
   end
 
   def new
@@ -17,7 +19,7 @@ class ExpensesController < ApplicationController
       redirect_to expense_path(@expense)
     else
       render :new
-    end 
+    end
   end
 
   def edit

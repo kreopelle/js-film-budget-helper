@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update, :show]
 
   resources :users do
-    resources :expenses, only: [:show, :index]
+    resources :expenses, only: [:show, :index, :new, :create]
   end
 
   resources :productions do
-    resources :expenses, only: [:show, :index]
-  end 
+    resources :expenses, only: [:show, :index, :new, :create]
+  end
 
   resources :expenses
 
