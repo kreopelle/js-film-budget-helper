@@ -5,5 +5,11 @@ class Expense < ApplicationRecord
   def formatted_date
     self.date.strftime("%m/%d/%y")
   end
-  
+
+  def money_total
+    "$" + ("%.2f" % self.total)
+  end
+
+
+
 end
