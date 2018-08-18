@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :productions
-  resources :users
+  resources :users, only: [:new, :create, :edit, :update, :show]
   resources :expenses
 
   root "welcome#home"
