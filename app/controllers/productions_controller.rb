@@ -1,5 +1,7 @@
 class ProductionsController < ApplicationController
 
+  before_action :set_production, only: [:show, :edit, :update]
+
   def index
   end
 
@@ -11,7 +13,12 @@ class ProductionsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @production = Production.new(production_params)
+    if @production.save
+      redirect_to production_path(@production.id)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -20,5 +27,14 @@ class ProductionsController < ApplicationController
   def update
   end
 
+  private
+
+  def set_production
+    @production = Production.find(params[:id])
+  end
+
+  def production_params
+    params.require(:production).permit(:name, :budget)
+  end
 
 end
