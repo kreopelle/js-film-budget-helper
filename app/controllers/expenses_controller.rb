@@ -32,7 +32,7 @@ class ExpensesController < ApplicationController
 
   def destroy
     @expense.destroy
-    redirect_to user_expenses_path(current_user.id)
+    redirect_to user_path(current_user.id)
   end
 
   private

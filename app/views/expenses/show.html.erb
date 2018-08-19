@@ -7,6 +7,10 @@
 <h3>Production: <%= @expense.production.name %></h3>
 <h3>Submitted by: <%= @expense.user.name %></h3>
 
-<%= link_to "Edit Expense", edit_expense_path(@expense) %>
+<%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %>
 
-<%= link_to "Back to Expenses", expenses_path %>
+<%= form_tag expense_path(@expense.id), method: "delete" do %>
+  <%= submit_tag "Delete Expense" %>
+<% end %>
+
+<%= link_to "Back to Expenses", user_expenses_path(current_user) %>

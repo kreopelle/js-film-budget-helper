@@ -10,4 +10,5 @@ class Expense < ApplicationRecord
     "$" + ("%.2f" % self.total)
   end
 
+
 end

@@ -12,7 +12,7 @@
       <td><%= expense.vendor %></td>
       <td><%= expense.formatted_date %></td>
       <td>$<%= expense.total %></td>
-      <td><%= link_to "See More", expense_path(expense.id) %></td>
+      <td><%= link_to "See More", user_expense_path(current_user.id, expense.id) %></td>
     </tr>
   <% end %>
 </table>
