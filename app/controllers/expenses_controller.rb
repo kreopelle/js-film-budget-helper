@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     if @expense.save
-      redirect_to expense_path(@expense)
+      redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     else
       render :new
     end
@@ -27,7 +27,7 @@ class ExpensesController < ApplicationController
 
   def update
     @expense.update(expense_params)
-    redirect_to user_expense_path(@expense)
+    redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
   end
 
   def destroy
