@@ -25,6 +25,8 @@ class ProductionsController < ApplicationController
   end
 
   def update
+    @production.update(production_params)
+    redirect_to production_path(@production.id)
   end
 
   private

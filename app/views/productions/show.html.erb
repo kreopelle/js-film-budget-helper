@@ -1,1 +1,5 @@
-<%= @production.name %> 
+<h1><%= @production.name %></h1>
+
+<h2><%= @production.budget %></h2>
+
+<p><%= link_to "Edit Production", edit_production_path(@production.id) %></p>
