@@ -3,6 +3,7 @@ class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update]
 
   def index
+    @productions = Production.all
   end
 
   def show

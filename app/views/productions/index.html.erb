@@ -1,0 +1,16 @@
+<h1>Productions</h1>
+
+<table>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong>Budget</strong></td>
+    <td><strong>Link</strong></td>
+  </tr>
+<% @productions.each do |production| %>
+  <tr>
+  <td><%= production.name %></td>
+  <td><%= production.budget %></td>
+  <td><%= link_to "See details", production_path(production.id) %></td>
+  </tr>
+<% end %>
+</table>
