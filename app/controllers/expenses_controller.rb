@@ -27,12 +27,12 @@ class ExpensesController < ApplicationController
 
   def update
     @expense.update(expense_params)
-    redirect_to expense_path(@expense)
+    redirect_to user_expense_path(@expense)
   end
 
   def destroy
     @expense.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to user_expenses_path(current_user.id)
   end
 
   private
