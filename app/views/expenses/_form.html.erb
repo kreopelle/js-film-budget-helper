@@ -2,8 +2,8 @@
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br>
 
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
+  <%= f.label :location, "Which location will this purchase be used?"%>
+  <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}) %><br>
 
   <%= f.label :department %>
   <%= f.text_field :department %><br>
