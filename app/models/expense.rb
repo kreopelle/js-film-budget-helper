@@ -6,9 +6,8 @@ class Expense < ApplicationRecord
     self.date.strftime("%m/%d/%y")
   end
 
-  def money_total
+  def dollar_total
     "$" + ("%.2f" % self.total)
   end
-
 
 end
