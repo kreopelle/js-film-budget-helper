@@ -1,5 +1,5 @@
 class ProductionsController < ApplicationController
-
+  before_action :require_login
   before_action :set_production, only: [:show, :edit, :update]
 
   def index
