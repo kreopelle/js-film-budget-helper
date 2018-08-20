@@ -6,7 +6,7 @@
   <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}) %><br>
 
   <%= f.label :department %>
-  <%= f.text_field :department %><br>
+  <%= f.collection_select :department_id, Department.all, :id, :category %><br>
 
   <%= f.label :date %>
   <%= f.date_field :date %><br>
