@@ -26,8 +26,11 @@ class ProductionsController < ApplicationController
   end
 
   def update
-    @production.update(production_params)
-    redirect_to production_path(@production.id)
+    if @production.update(production_params)
+      redirect_to production_path(@production.id)
+    else
+      render :edit
+    end 
   end
 
   private
