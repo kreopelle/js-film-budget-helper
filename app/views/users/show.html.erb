@@ -1,5 +1,7 @@
 <h1>Hello <%= current_user.name %>!</h1>
 
+<p>Email: <%= current_user.email %></p>
+
 <%= link_to "Create New Expense", new_user_expense_path(current_user.id) %><br>
 
 <%= link_to "Log out", logout_path %>
