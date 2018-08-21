@@ -3,6 +3,12 @@ class Expense < ApplicationRecord
   belongs_to :production
   enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
 
+  validates :vendor, presence: true
+  validates :date, presence: true
+  validates :location, presence: true
+  validates :total, numericality: { greater_than: 0.01 }
+  
+
   def formatted_date
     self.date.strftime("%m/%d/%y")
   end
