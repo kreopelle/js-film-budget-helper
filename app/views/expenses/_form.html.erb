@@ -17,7 +17,8 @@
   <%= f.label :production_id, "Production" %>
   <%= f.collection_select :production_id, Production.all, :id, :name %><br>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.label :receipt %>
+  <%= f.file_field :receipt %>
 
   <%= f.submit %>
 <% end %>
