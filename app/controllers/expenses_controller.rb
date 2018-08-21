@@ -20,6 +20,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @expense = Expense.new(expense_params)
     if @expense.save
       redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)

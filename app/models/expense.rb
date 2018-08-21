@@ -11,4 +11,10 @@ class Expense < ApplicationRecord
     "$" + ("%.2f" % self.total)
   end
 
+  def department_category
+    if self.department_id != nil
+      Department.find(self.department_id).category
+    end
+  end
+
 end
