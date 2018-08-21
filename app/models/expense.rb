@@ -8,7 +8,9 @@ class Expense < ApplicationRecord
   validates :date, presence: true
   validates :location, presence: true
   validates :total, numericality: { greater_than: 0.01 }
-
+  validates :location, inclusion: { in: %w(nysloc nysstu nycloc nycstu),
+   message: "%{value} is not a valid location" }
+   validate :correct_image_type
 
   def formatted_date
     self.date.strftime("%m/%d/%y")
@@ -21,6 +23,16 @@ class Expense < ApplicationRecord
   def department_category
     if self.department_id != nil
       Department.find(self.department_id).category
+    end
+  end
+
+  private
+
+  def correct_image_type
+    if receipt.attached? && !receipt.content_type.in?(%w(image/jpeg image/png))
+      errors.add(:receipt, 'must be a JPEG, JPG or PNG.')
+    elsif receipt.attached? == false
+      errors.add(:receipt, 'image required.')
     end
   end
 

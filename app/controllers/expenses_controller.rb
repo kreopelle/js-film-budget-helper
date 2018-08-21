@@ -33,9 +33,9 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense.receipt.attach(expense_params[:receipt])
     if current_user.id == @expense.user_id
       @expense.update(expense_params)
+      @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
       redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     else
       redirect_to user_path(current_user), notice: "Users may only edit their own expenses."
