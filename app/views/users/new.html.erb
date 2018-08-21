@@ -2,10 +2,10 @@
 
 <% if @user.errors.any? %>
   <ul>
-  <% @user.errors.full_messages.each do |message| %>
-    <li style="color:red;"><%= message %></li>
-  <% end %>
-</ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li style="color:red;"><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= form_for @user do |u| %>

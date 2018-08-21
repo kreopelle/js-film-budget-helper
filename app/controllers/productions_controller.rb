@@ -30,7 +30,7 @@ class ProductionsController < ApplicationController
       redirect_to production_path(@production.id)
     else
       render :edit
-    end 
+    end
   end
 
   private

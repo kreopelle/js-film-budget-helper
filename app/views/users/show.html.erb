@@ -2,6 +2,12 @@
 
 <p>Email: <%= current_user.email %></p>
 
+<p><strong>My Expenses</strong></p>
+
+<%= render partial: 'expenses/table', locals: {expenses: current_user.expenses} %>
+
+<br></br>
+
 <%= link_to "Create New Expense", new_user_expense_path(current_user.id) %><br>
 
 <%= link_to "Log out", logout_path %>

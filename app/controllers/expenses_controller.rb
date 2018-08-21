@@ -21,7 +21,7 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = current_user.expenses.build(expense_params)
-    if @expense.save
+      if @expense.save
       @expense.receipt.attach(expense_params[:receipt])
       redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     else
