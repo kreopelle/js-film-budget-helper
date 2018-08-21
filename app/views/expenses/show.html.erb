@@ -7,6 +7,8 @@
 <h3>Production: <%= @expense.production.name %></h3>
 <h3>Submitted by: <%= @expense.user.name %></h3>
 
+<%= image_tag(@expense.receipt) %>
+
 <%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %>
 
 <%= form_tag expense_path(@expense.id), method: "delete" do %>
