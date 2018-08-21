@@ -1,3 +1,11 @@
+<% if expense.errors.any? %>
+  <ul>
+  <% expense.errors.full_messages.each do |message| %>
+    <li style="color:red;"><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_for expense do |f| %>
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br>

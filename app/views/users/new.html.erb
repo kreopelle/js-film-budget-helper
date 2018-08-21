@@ -2,23 +2,23 @@
 
 <% if @user.errors.any? %>
   <ul>
-  <% @user.errors.full_messages do |message| %>
-    <li><%= message %></li>
+  <% @user.errors.full_messages.each do |message| %>
+    <li style="color:red;"><%= message %></li>
   <% end %>
 </ul>
 <% end %>
 
 <%= form_for @user do |u| %>
-  <%= u.label :name %>
+  <%= u.label "Name" %>
   <%= u.text_field :name %><br></br>
 
-  <%= u.label :email %>
+  <%= u.label "Email" %>
   <%= u.text_field :email %><br></br>
 
-  <%= u.label :password %>
+  <%= u.label "Password" %>
   <%= u.password_field :password %><br></br>
 
-  <%= u.label :password_confirmation %>
+  <%= u.label "Confirm Password" %>
   <%= u.password_field :password_confirmation %><br></br>
 
   <%= u.submit %>

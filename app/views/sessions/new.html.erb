@@ -1,5 +1,13 @@
 <h1>Welcome!</h1>
 
+<% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li style="color:red;"><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <%= form_for @user, url: login_path, method: "post" do |u| %>
   <%= u.label :email %>
   <%= u.text_field :email %><br>
@@ -7,5 +15,7 @@
   <%= u.label :password %>
   <%= u.password_field :password %><br>
 
-  <%= u.submit "Log In" %> or <%= link_to(controller: "users", action: "new") {"Sign Up"} %>
+  <%= u.submit "Log In" %>
 <% end %>
+
+<p>Need to create an account? <%= link_to(controller: "users", action: "new") {"Sign Up"} %></p>
