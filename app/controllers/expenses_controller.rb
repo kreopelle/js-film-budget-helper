@@ -20,9 +20,9 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    raise params.inspect
-    @expense = Expense.new(expense_params)
+    @expense = current_user.expenses.build(expense_params)
     if @expense.save
+      @expense.receipt.attach(expense_params[:receipt])
       redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     else
       render :new
@@ -33,8 +33,13 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense.update(expense_params)
-    redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
+    @expense.receipt.attach(expense_params[:receipt])
+    if current_user.id == @expense.user_id
+      @expense.update(expense_params)
+      redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
+    else
+      redirect_to user_path(current_user), notice: "Users may only edit their own expenses."
+    end
   end
 
   def destroy
@@ -49,7 +54,7 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:vendor, :date, :location, :department, :user_id, :production_id, :total)
+    params.require(:expense).permit(:vendor, :date, :location, :department, :user_id, :production_id, :total, :receipt)
   end
 
 end
