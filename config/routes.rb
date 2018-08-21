@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :expenses
 
+  get "/auth/google_oauth2/callback" => 'sessions#create'
+
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   get "/logout" => "sessions#destroy"

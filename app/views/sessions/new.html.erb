@@ -7,5 +7,5 @@
   <%= u.label :password %>
   <%= u.password_field :password %><br>
 
-  <%= u.submit "Log In" %> or <%= link_to(controller: "users", action: "new") {"Sign Up"} %>
+  <%= u.submit "Log In" %> or <%= link_to(controller: "users", action: "new") {"Sign Up"} %> or <%= link_to('Log in with Google!', '/auth/google') %> 
 <% end %>
