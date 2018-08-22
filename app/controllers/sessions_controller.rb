@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     if auth_hash
-      user = User.find_or_create_by_omniauth(auth_hash)
-      session[:user_id] = user.id
-      redirect_to user_path(user.id)
+      @user = User.find_or_create_by_omniauth(auth_hash)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user.id)
     else
       @user = User.find_by(email: params[:session][:email])
       if @user && @user.authenticate(params[:session][:password])
