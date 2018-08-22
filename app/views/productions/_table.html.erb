@@ -4,7 +4,7 @@
     <td><strong>Budget</strong></td>
     <td><strong>Link</strong></td>
   </tr>
-<% productions.each do |production| %>
+<% productions.find_each do |production| %>
   <tr>
   <td><%= production.name %></td>
   <td><%= production.dollar_budget %></td>

@@ -6,7 +6,7 @@
     <td><strong>Total</strong></td>
     <td><strong>View Expense</strong></td>
   </tr>
-  <% expenses.each do |expense| %>
+  <% expenses.find_each do |expense| %>
     <tr>
       <td><%= expense.vendor %></td>
       <td><%= expense.formatted_date %></td>
