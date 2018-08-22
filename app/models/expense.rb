@@ -1,8 +1,11 @@
 class Expense < ApplicationRecord
+
+  enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
+
   belongs_to :user
   belongs_to :production
   belongs_to :department
-  enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
+
   has_one_attached :receipt
 
   validates :vendor, presence: true
@@ -15,6 +18,9 @@ class Expense < ApplicationRecord
   validates :location, inclusion: { in: %w(nysloc nysstu nycloc nycstu),
    message: "%{value} is not a valid location" }
    validate :correct_image_type
+  
+   # scope :pending -> {where(pending: true)}
+   # scope :approved -> {where(pending: false)}
 
   def formatted_date
     self.date.strftime("%m/%d/%y")
