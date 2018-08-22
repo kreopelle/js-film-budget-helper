@@ -1,3 +1,5 @@
 <h1>Edit Expense</h1>
 
+<%= render partial: "shared/errors", locals: {object: @expense} %>
+
 <%= render partial: "form", locals: {expense: @expense} %>
