@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to user_path(@user.id)
       else
-        flash.now[:notice] = "Invalid email/password combination."
         render :new
       end
     end
