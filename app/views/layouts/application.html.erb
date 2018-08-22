@@ -13,7 +13,7 @@
 
     <div class="container" role="main">
       <% if flash.any? %>
-          <% flash.find_each do |key, value| %>
+          <% flash.each do |key, value| %>
             <div class="alert alert-info alert-<%= key %>"><%= value %></div>
           <% end %>
       <% end %>
