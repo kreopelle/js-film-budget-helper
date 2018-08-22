@@ -2,4 +2,6 @@
 
 <h2><%= @production.budget %></h2>
 
+<%= render partial: "/expenses/table", locals {:expenses, @production.expenses} %>
+
 <p><%= link_to "Edit Production", edit_production_path(@production.id) %></p>

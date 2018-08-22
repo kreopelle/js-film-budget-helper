@@ -1,24 +1,25 @@
+
 <%= form_for expense do |f| %>
   <%= f.label :vendor %>
-  <%= f.text_field :vendor %><br>
+  <%= f.text_field :vendor %><br></br>
 
   <%= f.label :location, "Which location will this purchase be used?"%>
-  <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}) %><br>
+  <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}), {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :department %>
-  <%= f.collection_select :department_id, Department.all, :id, :category %><br>
+  <%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :date %>
-  <%= f.date_field :date %><br>
+  <%= f.date_field :date %><br></br>
 
   <%= f.label :total %>
-  <%= f.number_field :total, min: 0.01, max: 999999.99, step: 0.01 %><br>
+  <%= f.number_field :total, min: 0.01, max: 999999.99, step: 0.01 %><br></br>
 
   <%= f.label :production_id, "Production" %>
-  <%= f.collection_select :production_id, Production.all, :id, :name %><br>
+  <%= f.collection_select :production_id, Production.all, :id, :name, {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :receipt %>
-  <%= f.file_field :receipt %>
+  <%= f.file_field :receipt %><br></br>
 
   <%= f.submit %>
 <% end %>

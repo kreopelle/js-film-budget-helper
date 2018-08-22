@@ -1,18 +1,20 @@
 
-<h3>Vendor: <%= @expense.vendor %></h3>
-<h3>Date: <%= @expense.formatted_date %></h3>
-<h3>Total: <%= @expense.dollar_total %></h3>
-<h3>Location: <%= @expense.location %></h3>
-<h3>Department: <%= @expense.department_category %></h3>
-<h3>Production: <%= @expense.production.name %></h3>
-<h3>Submitted by: <%= @expense.user.name %></h3>
+<h1>Vendor: <%= @expense.vendor %></h1>
+<p><strong>Date: </strong><%= @expense.formatted_date %></p>
+<p><strong>Total: </strong><%= @expense.dollar_total %></p>
+<p><strong>Location: </strong><%= @expense.location %></p>
+<p><strong>Department: </strong><%= @expense.department_category %></p>
+<p><strong>Production: </strong><%= @expense.production.name %></p>
+<p><strong>Submitted by: </strong><%= @expense.user.name %></p>
+<br></br>
 
-<%= image_tag(@expense.receipt) %>
+<%= image_tag(@expense.receipt) %><br></br>
 
-<%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %>
+<%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %><br></br>
 
 <%= form_tag expense_path(@expense.id), method: "delete" do %>
   <%= submit_tag "Delete Expense" %>
 <% end %>
+<br></br>
 
 <%= link_to "Back to Expenses", user_expenses_path(current_user) %>
