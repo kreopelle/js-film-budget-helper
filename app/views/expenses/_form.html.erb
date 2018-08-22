@@ -6,7 +6,7 @@
   <%= f.label :location, "Which location will this purchase be used?"%>
   <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}), {:include_blank => 'Please Select'} %><br></br>
 
-  <%= f.label :department_id, "Department" %>
+  <%= f.label :department_id %>
   <%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :date %>
@@ -15,7 +15,7 @@
   <%= f.label :total %>
   <%= f.number_field :total, min: 0.01, max: 999999.99, step: 0.01 %><br></br>
 
-  <%= f.label :production_id, "Production" %>
+  <%= f.label :production_id %>
   <%= f.collection_select :production_id, Production.all, :id, :name, {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :receipt %>
