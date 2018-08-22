@@ -6,7 +6,7 @@
   <%= f.label :location, "Which location will this purchase be used?"%>
   <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}), {:include_blank => 'Please Select'} %><br></br>
 
-  <%= f.label :department %>
+  <%= f.label :department, "Department" %>
   <%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :date %>

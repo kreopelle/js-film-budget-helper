@@ -12,7 +12,7 @@
       <td><%= expense.formatted_date %></td>
       <td><%= expense.department_category %></td>
       <td><%= expense.dollar_total %></td>
-      <td><%= link_to "See More", expense_link %></td>
+      <td><%= link_to "See More", expense_path(expense.id) %></td>
     </tr>
   <% end %>
 </table>

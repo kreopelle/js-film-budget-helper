@@ -8,7 +8,6 @@ class Expense < ApplicationRecord
   validates :vendor, presence: true
   validates :date, presence: true
   validates :location, presence: true
-  validates :department_id, presence: true
   validates :total, numericality: { greater_than: 0.01 }
   validates :location, inclusion: { in: %w(nysloc nysstu nycloc nycstu),
    message: "%{value} is not a valid location" }

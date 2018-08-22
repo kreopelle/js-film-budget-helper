@@ -1,4 +1,5 @@
 <h1> New Expense </h1>
 <br></br>
 
+<%= render partial: "errors", locals: {expense: @expense} %>
 <%= render partial: "form", locals: {expense: @expense} %>
