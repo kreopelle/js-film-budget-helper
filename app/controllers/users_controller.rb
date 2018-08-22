@@ -24,4 +24,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :role, :password, :password_confirmation)
   end
 
+  def admin?
+    self.admin
+  end
+  helper_method :admin?
+
 end
