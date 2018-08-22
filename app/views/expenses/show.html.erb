@@ -3,10 +3,9 @@
 <p><strong>Total: </strong><%= @expense.dollar_total %></p>
 <p><strong>Location: </strong><%= @expense.location %></p>
 <p><strong>Department: </strong><%= @expense.department_category %></p>
-<p><strong>Production: </strong><%= @expense.production.name %></p>
-<p><strong>Submitted by: </strong><%= @expense.user.name %></p>
-<br></br>
-
+<p><strong>Production: </strong><%= @expense.production_name %></p>
+<p><strong>Submitted by: </strong><%= @expense.user_name %></p>
+<p><em><%= "Description: #{@expense.description}" if @expense.description %></em></p>
 <p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_path(current_user) %></p>
 
 

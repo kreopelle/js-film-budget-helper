@@ -36,6 +36,14 @@ class Expense < ApplicationRecord
     end
   end
 
+  def user_name
+    self.user.name
+  end
+
+  def production_name
+    self.production.name
+  end 
+
   private
 
   def correct_image_type
