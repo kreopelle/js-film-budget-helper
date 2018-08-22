@@ -21,6 +21,9 @@
   <%= u.label "Confirm Password" %>
   <%= u.password_field :password_confirmation %><br></br>
 
+  <%= u.label :admin %>
+  <%= u.check_box :admin %><br></br> 
+
   <%= u.submit %>
 
 <% end %>

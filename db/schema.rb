@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_023308) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "uid"
-    t.boolean "admin", default: true
+    t.boolean "admin", default: false
   end
 
 end
