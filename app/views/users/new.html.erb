@@ -1,12 +1,6 @@
 <h1>Sign Up</h1>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li style="color:red;"><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render :partial, locals: {user: @user} %>
 
 <%= form_for @user do |u| %>
   <%= u.label "Name" %>
@@ -22,7 +16,7 @@
   <%= u.password_field :password_confirmation %><br></br>
 
   <%= u.label :admin %>
-  <%= u.check_box :admin %><br></br> 
+  <%= u.check_box :admin %><br></br>
 
   <%= u.submit %>
 
