@@ -15,4 +15,8 @@ class User < ApplicationRecord
     end
   end
 
+  def owns_expense(expense)
+    self.expenses.include?(expense)
+  end 
+
 end

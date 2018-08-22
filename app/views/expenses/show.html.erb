@@ -7,13 +7,7 @@
 <p><strong>Submitted by: </strong><%= @expense.user.name %></p>
 <br></br>
 
-<%= image_tag(@expense.receipt) %><br></br>
+<p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_path(current_user) %></p>
 
-<%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %><br></br>
 
-<%= form_tag user_expense_path([current_user, @expense.id]), method: "delete" do %>
-  <%= submit_tag "Delete Expense" %>
-<% end %>
-<br></br>
-
-<%= link_to "Back to My Expenses", user_path(current_user) %>
+<%= image_tag(@expense.receipt, class:"img-fluid") %><br></br>

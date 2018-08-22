@@ -20,26 +20,22 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    if current_user.expenses.include?(@expense.id)
-      render :edit
-    else
-      redirect_to user_path(current_user), notice: "Users may edit only expenses they created."
-    end
+    redirect_to user_path(current_user), notice: "Users may edit only expenses they created." unless current_user.admin || current_user.owns_expense(@expense)
   end
 
   def update
-    if current_user.id == @expense.user_id
-      @expense.update(expense_params)
-      @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
-      redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
+    @expense.update(expense_params)
+    @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
+    if current_user.admin
+      redirect_to production_expense_path(production_id: @expense.production_id, id: @expense.id)
     else
-      redirect_to user_path(current_user), notice: "Users may edit expenses they created."
+      redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     end
   end
 
   def destroy
     @expense.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), notice: "Expense deleted"
   end
 
   private
