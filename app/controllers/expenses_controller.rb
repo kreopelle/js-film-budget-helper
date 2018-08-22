@@ -3,6 +3,7 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def show
+    authorize @expense
   end
 
   def new
@@ -20,10 +21,11 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    redirect_to user_path(current_user), notice: "Users may edit only expenses they created." unless current_user.admin || current_user.owns_expense(@expense)
+    authorize @expense
   end
 
   def update
+    authorize @expense
     @expense.update(expense_params)
     @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
     if current_user.admin
@@ -34,6 +36,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+    authorize @expense
     @expense.destroy
     redirect_to user_path(current_user.id), notice: "Expense deleted"
   end
