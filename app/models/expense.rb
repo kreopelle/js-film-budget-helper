@@ -1,6 +1,7 @@
 class Expense < ApplicationRecord
   belongs_to :user
   belongs_to :production
+  belongs_to :department
   enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
   has_one_attached :receipt
 
