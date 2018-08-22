@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_many :expenses
   has_many :productions, through: :expenses
 
-  validates :name, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   has_secure_password
