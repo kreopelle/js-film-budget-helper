@@ -1,6 +1,7 @@
 class Expense < ApplicationRecord
 
   enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
+  enum status: [:pending, :approved, :rejected]
 
   belongs_to :user
   belongs_to :production
@@ -8,19 +9,24 @@ class Expense < ApplicationRecord
 
   has_one_attached :receipt
 
-  validates :vendor, presence: true
   validates :date, presence: true
   validates :department_id, presence: true
   validates :department, presence: true, if: -> { department_id.present? }
-  validates :production_id, presence: true
-  validates :production, presence: true, if: -> { production_id.present? }
-  validates :total, numericality: { greater_than: 0.01 }
+  validates :location, presence: true
   validates :location, inclusion: { in: %w(nysloc nysstu nycloc nycstu),
    message: "%{value} is not a valid location" }
-   validate :correct_image_type
+  validates :production_id, presence: true
+  validates :production, presence: true, if: -> { production_id.present? }
+  validates :status, presence: true
+  validates :status, inclusion: { in: %w(pending approved rejected), message "%{value} is not a valid status"}
+  validates :total, numericality: { greater_than: 0.01 }
+  validates :vendor, presence: true
 
-   # scope :pending -> {where(pending: true)}
-   # scope :approved -> {where(pending: false)}
+  validate :correct_image_type
+
+  scope :pending -> {where(status: "pending"}
+  scope :approved -> {where(status: "approved")}
+  scope :rejected -> {where(status: "rejected")}
 
   def formatted_date
     self.date.strftime("%m/%d/%y")
@@ -42,7 +48,7 @@ class Expense < ApplicationRecord
 
   def production_name
     self.production.name
-  end 
+  end
 
   private
 
