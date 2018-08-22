@@ -4,4 +4,4 @@
 
 <%= render partial: "expenses/table", locals: {expenses: @production.expenses} %><br></br>
 
-<p><%= link_to "Edit Production", edit_production_path(@production.id) %></p>
+<p><%= link_to "Edit Production", edit_production_path(@production.id) %> | <%= link_to "Home", user_path(current_user) %></p>
