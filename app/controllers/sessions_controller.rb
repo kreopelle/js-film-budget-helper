@@ -1,25 +1,20 @@
 class SessionsController < ApplicationController
 
   def new
-    @user = User.new
   end
 
   def create
     if auth_hash
-      user = User.find_or_create_by(uid: auth_hash["uid"]) do |u|
-        u.uid = auth_hash["uid"]
-        u.name = auth_hash["info"]["name"]
-        u.email = auth_hash["info"]["email"]
-        u.password = SecureRandom.hex
-      end
+      user = User.find_or_create_by_omniauth(auth_hash)
       session[:user_id] = user.id
       redirect_to user_path(user.id)
     else
-      user = User.find_by(email: params[:user][:email])
-      if user && user.authenticate(params[:user][:password])
+      user = User.find_by(email: params[:session][:email])
+      if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
         redirect_to user_path(user.id)
       else
+        flash.now[:notice] = "Invalid email/password combination."
         render :new
       end
     end

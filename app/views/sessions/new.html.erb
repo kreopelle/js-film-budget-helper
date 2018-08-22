@@ -1,21 +1,18 @@
 <h1>Welcome!</h1>
 
-<% if @user.errors.any? %>
-  <ul>
-  <% @user.errors.full_messages.each do |message| %>
-    <li style="color:red;"><%= message %></li>
-  <% end %>
-</ul>
+
+<%= form_for(@user) do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+
+  <%= f.submit "Log In" %>
 <% end %>
 
-<%= form_for @user, url: login_path, method: "post" do |u| %>
-  <%= u.label :email %>
-  <%= u.text_field :email %><br>
+<br>
 
-  <%= u.label :password %>
-  <%= u.password_field :password %><br>
+<p><%= link_to('Log in with Google', '/auth/google_oauth2') %></p>
 
-  <%= u.submit "Log In" %>
-<% end %>
-
-<p>Need to create an account? <%= link_to(controller: "users", action: "new") {"Sign Up"} %></p>
+<p>New user? <%= link_to(controller: "users", action: "new") {"Sign up here!"} %></p>
