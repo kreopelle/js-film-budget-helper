@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_many :expenses
   has_many :productions, through: :expenses
 
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, uniqueness: true
+  
 
   has_secure_password
 
@@ -17,6 +18,6 @@ class User < ApplicationRecord
 
   def owns_expense(expense)
     self.expenses.include?(expense)
-  end 
+  end
 
 end
