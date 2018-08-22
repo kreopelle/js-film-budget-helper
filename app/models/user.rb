@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def find_or_create_by_omniauth
-    User.find_or_create_by(uid: auth_hash["uid"]) do |u|
+  def self.find_or_create_by_omniauth(auth_hash)
+    self.find_or_create_by(uid: auth_hash["uid"]) do |u|
       u.uid = auth_hash["uid"]
       u.name = auth_hash["info"]["name"]
       u.email = auth_hash["info"]["email"]
