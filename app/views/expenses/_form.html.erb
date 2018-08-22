@@ -1,8 +1,8 @@
-<%= form_for expense do |f| %>
+<%= form_for ([current_user, expense]) do |f| %>
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br></br>
 
-  <%= f.label :location, "Which location will this purchase be used?"%>
+  <%= f.label :location, "Where will this purchase be used?"%>
   <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}), {:include_blank => 'Please Select'} %><br></br>
 
   <%= f.label :department_id %>
