@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
-  resources :productions, only: [:new, :create, :edit, :update, :show, :index]
-  resources :users, only: [:new, :create, :edit, :update, :show]
-
-  resources :users do
-    resources :expenses, only: [:show, :index, :new, :create, :edit, :update]
-  end
-
-  resources :productions do
-    resources :expenses, only: [:show, :index, :new, :create]
-  end
-
-  resources :expenses
-
-  get "/auth/google_oauth2/callback" => 'sessions#create'
+  root "welcome#home"
 
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   get "/logout" => "sessions#destroy"
 
-  root "welcome#home"
+  get "/auth/google_oauth2/callback" => 'sessions#create'
+
+  resources :users, only: [:new, :create, :show] do
+    resources :expenses, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  end
+  
+  resources :productions, only: [:new, :create, :edit, :update, :show, :index] do
+    resources :expenses, only: [:show, :index]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
