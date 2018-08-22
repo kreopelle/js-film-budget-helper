@@ -1,7 +1,7 @@
-<h1><%= @production.name %></h1>
+<h1><%= @production.name %></h1><br></br>
 
-<h2><%= @production.budget %></h2>
+<h2>Budget: <%= @production.dollar_budget %></h2><br></br>
 
-<%= render partial: "/expenses/table", locals {:expenses, @production.expenses} %>
+<%= render partial: "expenses/table", locals: {expenses: @production.expenses} %><br></br>
 
 <p><%= link_to "Edit Production", edit_production_path(@production.id) %></p>

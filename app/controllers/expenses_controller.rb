@@ -3,13 +3,7 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:user_id]
-      @expenses = User.find(params[:user_id]).expenses
-    elsif params[:production_id]
-      @expenses = Production.find(params[:production_id]).expenses
-    else
-      @expenses = Expense.all
-    end
+    @expenses = Expense.all
   end
 
   def show
