@@ -1,16 +1,3 @@
-<h1>Productions</h1>
+<h1>All Productions</h1>
 
-<table class="table">
-  <tr>
-    <td><strong>Name</strong></td>
-    <td><strong>Budget</strong></td>
-    <td><strong>Link</strong></td>
-  </tr>
-<% @productions.each do |production| %>
-  <tr>
-  <td><%= production.name %></td>
-  <td><%= production.dollar_budget %></td>
-  <td><%= link_to "See details", production_path(production.id) %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial, locals: {productions: @productions} %> 
