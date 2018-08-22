@@ -1,18 +1,22 @@
-<table class="table">
-  <tr>
-    <td><strong>Vendor</strong></td>
-    <td><strong>Date</strong></td>
-    <td><strong>Department</strong></td>
-    <td><strong>Total</strong></td>
-    <td><strong>View Expense</strong></td>
-  </tr>
-  <% expenses.find_each do |expense| %>
+<% if expenses.size < 1 %>
+  <p>You don't have any expenses yet! <%= link_to "Add one here.", new_user_expense_path(current_user.id) %></p>
+<% else %>
+  <table class="table">
     <tr>
-      <td><%= expense.vendor %></td>
-      <td><%= expense.formatted_date %></td>
-      <td><%= expense.department_category %></td>
-      <td><%= expense.dollar_total %></td>
-      <td><%= link_to "See More", user_expense_path(current_user, expense.id) %></td>
+      <td><strong>Vendor</strong></td>
+      <td><strong>Date</strong></td>
+      <td><strong>Department</strong></td>
+      <td><strong>Total</strong></td>
+      <td><strong>View Expense</strong></td>
     </tr>
-  <% end %>
-</table>
+    <% expenses.find_each do |expense| %>
+      <tr>
+        <td><%= expense.vendor %></td>
+        <td><%= expense.formatted_date %></td>
+        <td><%= expense.department_category %></td>
+        <td><%= expense.dollar_total %></td>
+        <td><%= link_to "See More", user_expense_path(current_user, expense.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
