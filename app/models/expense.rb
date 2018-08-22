@@ -18,7 +18,7 @@ class Expense < ApplicationRecord
   validates :location, inclusion: { in: %w(nysloc nysstu nycloc nycstu),
    message: "%{value} is not a valid location" }
    validate :correct_image_type
-  
+
    # scope :pending -> {where(pending: true)}
    # scope :approved -> {where(pending: false)}
 

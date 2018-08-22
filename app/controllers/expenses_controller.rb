@@ -24,6 +24,11 @@ class ExpensesController < ApplicationController
   end
 
   def edit
+    if current_user.expenses.include?(@expense.id)
+      render :edit
+    else
+      redirect_to user_path(current_user), notice: "Users may edit only their own expenses."
+    end
   end
 
   def update
@@ -32,7 +37,7 @@ class ExpensesController < ApplicationController
       @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
       redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     else
-      redirect_to user_path(current_user), notice: "Users may only edit their own expenses."
+      redirect_to user_path(current_user), notice: "Users may edit only their own expenses."
     end
   end
 
