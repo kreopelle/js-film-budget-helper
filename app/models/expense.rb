@@ -1,7 +1,6 @@
 class Expense < ApplicationRecord
 
   enum location: [:nycloc, :nycstu, :nysloc, :nysstu]
-  enum status: [:pending, :approved, :rejected]
 
   belongs_to :user
   belongs_to :production
@@ -27,6 +26,8 @@ class Expense < ApplicationRecord
   scope :pending, -> {where(status: "pending")}
   scope :approved, -> {where(status: "approved")}
   scope :rejected, -> {where(status: "rejected")}
+
+  before_create :set_status_to_pending
 
   def formatted_date
     self.date.strftime("%m/%d/%y")
