@@ -25,7 +25,7 @@ class Expense < ApplicationRecord
 
   scope :pending, -> {where(status: "pending")}
   scope :approved, -> {where(status: "approved")}
-  scope :rejected, -> {where(status: "rejected")}
+  scope :not_approved, -> {where(status: "not approved")}
 
   def formatted_date
     self.date.strftime("%m/%d/%y")

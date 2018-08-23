@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   get 'pending_expenses', to: 'expenses#pending'
   get 'approved_expenses', to: 'expenses#approved'
-  get 'rejected_expenses', to: 'expenses#rejected'
+  get 'not_approved_expenses', to: 'expenses#not_approved'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

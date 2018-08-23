@@ -52,8 +52,8 @@ class ExpensesController < ApplicationController
   end
 
 
-  def rejected
-    @expenses = Expense.rejected
+  def not_approved
+    @expenses = Expense.not_approved
   end
 
   private

@@ -1,7 +1,4 @@
-<% if expenses.size < 1 %>
-  <p>You don't have any expenses yet! <%= link_to "Add one here.", new_user_expense_path(current_user.id) %></p>
-<% else %>
-  <table class="table">
+<table class="table">
     <tr>
       <td><strong>Vendor</strong></td>
       <td><strong>Date</strong></td>
@@ -21,4 +18,3 @@
       </tr>
     <% end %>
   </table>
-<% end %>
