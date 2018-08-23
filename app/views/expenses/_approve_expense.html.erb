@@ -1,0 +1,20 @@
+<p><strong>Expense status: </strong></p>
+
+<%= form_for expense, :url => {action: "update", id: expense.id } do |f| %>
+  <%= f.radio_button :status, "pending",
+  checked: true if expense.status = "pending"%>
+
+  <%= f.label :status, "Pending" %>
+
+  <%= f.radio_button :status, "approved",
+  checked: true if expense.status = "approved"%>
+
+  <%= f.label :status, "Approved" %>
+
+  <%= f.radio_button :status, "not approved",
+  checked: true if expense.status = "not approved"%>
+
+  <%= f.label :status, "Not Approved" %><br></br>
+
+  <%= f.submit "Update Status" %>
+<% end %>

@@ -6,6 +6,9 @@
 <p><strong>Production: </strong><%= @expense.production_name %></p>
 <p><strong>Submitted by: </strong><%= @expense.user_name %></p>
 <p><em><%= "Description: #{@expense.description}" if @expense.description %></em></p>
+
+<%= display_expense_status(current_user, @expense) %> 
+
 <p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_path(current_user) %></p>
 
 

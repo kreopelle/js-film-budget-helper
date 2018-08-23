@@ -17,6 +17,12 @@ module ExpensesHelper
     end
   end
 
-
+  def display_expense_status(user, expense)
+    if user.admin && expense.status == "pending"
+      render partial: "expenses/approve_expense", locals: {expense: expense}
+    else
+      content_tag(:p, "".html_safe + "Status: #{expense.status}")
+    end
+  end
 
 end
