@@ -2,8 +2,7 @@ module ExpensesHelper
 
   def user_expenses_table(user)
     if user.expenses.size == 0
-      content_tag(:p, "You don't have any expenses yet!")
-      link_to "Add one here!", new_user_expense_path
+      content_tag(:p, "You don't have any expenses yet!".html_safe + " " + link_to("Add one here!", new_user_expense_path(user)) )
     else
       render partial: "expenses/table", locals: {expenses: user.expenses}
     end
@@ -11,7 +10,7 @@ module ExpensesHelper
 
   def status_expenses_table(expenses)
     if expenses.size == 0
-      content_tag(:p, "No expenses in this category.")
+      content_tag(:p, "Currently, there are no expenses in this category.")
     else
       render partial: "expenses/table", locals: {expenses: expenses}
     end
