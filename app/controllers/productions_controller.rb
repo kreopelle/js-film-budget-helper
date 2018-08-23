@@ -35,9 +35,6 @@ class ProductionsController < ApplicationController
   end
 
   private
-  def require_admin
-    redirect_to user_path(current_user) unless current_user.admin
-  end
 
   def set_production
     @production = Production.find(params[:id])

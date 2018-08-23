@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_admin
+    redirect_to user_path(current_user) unless current_user.admin
+  end
+
   def user_not_authorized
     redirect_to user_path(current_user), notice: "You are not authorized to perform this action."
   end
