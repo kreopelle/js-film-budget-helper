@@ -7,6 +7,7 @@
       <td><strong>Date</strong></td>
       <td><strong>Department</strong></td>
       <td><strong>Total</strong></td>
+      <td><strong>Status</strong></td>
       <td><strong>View Expense</strong></td>
     </tr>
     <% expenses.find_each do |expense| %>
@@ -15,6 +16,7 @@
         <td><%= expense.formatted_date %></td>
         <td><%= expense.department_category %></td>
         <td><%= expense.dollar_total %></td>
+        <td><%= expense.status %></td>
         <td><%= link_to "See More", user_expense_path(current_user, expense.id) %></td>
       </tr>
     <% end %>
