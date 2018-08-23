@@ -2,9 +2,6 @@
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br></br>
 
-  <%= f.label :location, "Where will this purchase be used?"%>
-  <%= f.select :location, options_for_select(Expense.locations.map {|k, v| [k, k]}), {:include_blank => 'Please Select'} %><br></br>
-
   <%= f.label :department_id %>
   <%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
 
