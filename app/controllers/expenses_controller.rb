@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
   before_action :require_login
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, only: [:pending, :approved, :rejected]
 
   def show
     authorize @expense
@@ -39,6 +40,20 @@ class ExpensesController < ApplicationController
     authorize @expense
     @expense.destroy
     redirect_to user_path(current_user.id), notice: "Expense deleted"
+  end
+
+  def pending
+    @expenses = Expense.pending
+  end
+
+
+  def approved
+    @expenses = Expense.approved
+  end
+
+
+  def rejected
+    @expenses = Expense.rejected
   end
 
   private
