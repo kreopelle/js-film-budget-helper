@@ -27,8 +27,6 @@ class Expense < ApplicationRecord
   scope :approved, -> {where(status: "approved")}
   scope :rejected, -> {where(status: "rejected")}
 
-  before_create :set_status_to_pending
-
   def formatted_date
     self.date.strftime("%m/%d/%y")
   end
