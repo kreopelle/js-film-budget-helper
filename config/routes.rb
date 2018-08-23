@@ -11,11 +11,15 @@ Rails.application.routes.draw do
     resources :expenses, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :productions, only: [:new, :create, :edit, :update, :show, :index] do
+  resources :productions, only: [:show, :index, :new, :create, :edit, :update] do
     resources :expenses, only: [:show]
   end
 
   resources :expenses, only: [:destroy]
+
+  get 'pending_expenses', to: 'expenses#pending'
+  get 'approved_expenses', to: 'expenses#approved'
+  get 'rejected_expenses', to: 'expenses#rejected'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
