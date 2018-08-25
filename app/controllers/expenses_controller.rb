@@ -4,7 +4,6 @@ class ExpensesController < ApplicationController
   before_action :require_admin, only: [:pending, :approved, :rejected]
 
   def show
-    #authorize @expense
   end
 
   def new
@@ -22,11 +21,9 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    #authorize @expense
   end
 
   def update
-    #authorize @expense
     @expense.update(expense_params)
     @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
     if current_user.admin
@@ -37,7 +34,6 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    #authorize @expense
     @expense.destroy
     redirect_to user_path(current_user.id), notice: "Expense deleted"
   end
@@ -64,7 +60,7 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:vendor, :date, :department_id, :user_id, :production_id, :total, :receipt, :description, :status_note, :status)
+    params.require(:expense).permit(:date, :department_id, :description, :production_id, :receipt, :status, :total, :user_id, :vendor)
   end
 
 end
