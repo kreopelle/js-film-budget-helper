@@ -12,7 +12,7 @@ class Expense < ApplicationRecord
   validates :production_id, presence: true
   validates :production, presence: true, if: -> { production_id.present? }
   validates :status, presence: true
-  validates :status, inclusion: { in: %w(pending approved rejected), message: "%{value} is not a valid status"}
+  validates :status, inclusion: { in: ["pending", "approved", "not approved"], message: "%{value} is not a valid status"}
   validates :total, numericality: { greater_than: 0.01 }
   validates :vendor, presence: true
 

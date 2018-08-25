@@ -7,15 +7,15 @@ class ExpensePolicy < ApplicationPolicy
   end
 
   def show?
-    update?
-  end
-
-  def update?
     user.admin? || user.owns_expense(@expense)
   end
 
+  def update?
+    show? && @expense.status != "approved"
+  end
+
   def destroy?
-    update?
+    show?
   end
 
 end
