@@ -15,7 +15,7 @@ class ExpensePolicy < ApplicationPolicy
   end
 
   def destroy?
-    show?
+    update?
   end
 
 end
