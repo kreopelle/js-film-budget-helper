@@ -2,7 +2,9 @@
 
   <p><strong>Productions</strong></p>
 
-  <%= render partial: "productions/table", locals: {productions: Production.all } %>
+  <%= render partial: "productions/table", locals: {productions: @productions } %>
+
+  <%= link_to "Create New Production", new_production_path %>
 
   <br></br>
 
