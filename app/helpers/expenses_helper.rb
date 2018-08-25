@@ -26,7 +26,7 @@ module ExpensesHelper
 
   def expense_description(expense)
     if expense.description
-      content_tag(:p, "".html_save + "Description: #{expense.description}")
+      content_tag(:p, "".html_safe + "Description: #{expense.description}")
     end
   end
 
