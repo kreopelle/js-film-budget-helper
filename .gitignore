@@ -32,3 +32,6 @@
 
 # Ignore environment files
 .env
+
+# Ignore personal notes fro project
+NOTES.md
