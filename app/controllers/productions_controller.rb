@@ -3,10 +3,6 @@ class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update]
   before_action :require_admin
 
-  def index
-    @productions = Production.all
-  end
-
   def show
   end
 

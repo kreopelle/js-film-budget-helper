@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :expenses, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :productions, only: [:show, :index, :new, :create, :edit, :update] do
+  resources :productions, only: [:show, :new, :create, :edit, :update] do
     resources :expenses, only: [:show]
   end
 
