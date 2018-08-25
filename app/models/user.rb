@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, uniqueness: true
   
-
   has_secure_password
 
   def self.find_or_create_by_omniauth(auth_hash)
