@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:show]
 
   def show
+    @productions = Production.all if current_user.admin
   end
 
   def new
