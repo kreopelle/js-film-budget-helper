@@ -7,13 +7,11 @@ class SessionsController < ApplicationController
   def create
     if auth_hash
       @user = User.find_or_create_by_omniauth(auth_hash)
-      session[:user_id] = @user.id
-      redirect_to user_path(@user.id)
+      set_session_user(@user)
     else
       @user = User.find_by(email: params[:user][:email])
       if @user && @user.authenticate(params[:user][:password])
-        session[:user_id] = @user.id
-        redirect_to user_path(@user.id)
+        set_session_user(@user)
       else
         flash.now[:notice] = "Invalid email/password combination."
         @user = User.new
@@ -28,6 +26,11 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def set_session_user(user)
+    session[:user_id] = user.id
+    redirect_to user_path(user.id)
+  end
 
   def auth_hash
     request.env["omniauth.auth"]
