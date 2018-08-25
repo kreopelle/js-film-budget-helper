@@ -4,7 +4,7 @@
 <p><strong>Department: </strong><%= @expense.department_category %></p>
 <p><strong>Production: </strong><%= @expense.production_name %></p>
 <p><strong>Submitted by: </strong><%= @expense.user_name %></p>
-<p><em><%= "Description: #{@expense.description}" if @expense.description %></em></p>
+<%= expense_description(@expense) %>
 
 <%= display_expense_status(current_user, @expense) %><br>
 
