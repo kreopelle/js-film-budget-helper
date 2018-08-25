@@ -59,7 +59,7 @@ Everyone interacting in the Film Budget Helper's codebases, issue trackers, chat
 
 ## License
 
-The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The app is available as open source under the terms of the [MIT License](https://github.com/kreopelle/film-budget-helper/blob/master/LICENSE.md).
 
 ## Acknowledgments
 
