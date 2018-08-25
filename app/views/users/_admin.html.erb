@@ -1,7 +1,13 @@
 <% if current_user.admin == true %>
+
   <p><strong>Productions</strong></p>
+
   <%= render partial: "productions/table", locals: {productions: Production.all } %>
+
   <br></br>
+
   <p><strong>View all expenses by status:</strong> <%= link_to "Pending", pending_expenses_path %> | <%= link_to "Approved", approved_expenses_path %> | <%= link_to "Not Approved", not_approved_expenses_path %></p>
+
   <br></br>
+
 <% end %>
