@@ -16,7 +16,5 @@ test:
   database: film-budget-helper_test
 
 production:
-  <<: *default
-  database: film-budget-helper_production
-  username: <%= ENV['MYAPP_DATABASE_USER'] %>
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["RAILS_MAX_THREADS"] %>
