@@ -1,0 +1,3 @@
+- user able to add expense with pre-set production
+- looking at production show page, could say @epxense
+- when clicking on @expense, go to a form to create an expense already belonging to that production

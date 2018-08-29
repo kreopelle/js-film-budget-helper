@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :productions, only: [:show, :new, :create, :edit, :update] do
-    resources :expenses, only: [:show]
+    resources :expenses, only: [:show, :new, :create]
   end
 
   resources :expenses, only: [:update, :destroy]

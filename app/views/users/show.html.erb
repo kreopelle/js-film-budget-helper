@@ -4,10 +4,11 @@
 
 <p><strong>My Expenses</strong></p>
 
-<%= user_expenses_table(current_user) %> 
+<%= user_expenses_table(current_user) %>
 
 <br></br>
 
 <%= link_to "Create New Expense", new_user_expense_path(current_user.id) %><br>
+<%= link_to "Create New Expense for #{current_user.last_production_name}", new_production_expense_path(current_user.last_production) %><br>
 
 <%= link_to "Log out", logout_path %>

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :productions, through: :expenses
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, uniqueness: true
-  
+
   has_secure_password
 
   def self.find_or_create_by_omniauth(auth_hash)
@@ -18,5 +18,17 @@ class User < ApplicationRecord
   def owns_expense(expense)
     self.expenses.include?(expense)
   end
+
+  def last_production
+    if self.expenses.any?
+      self.expenses.last.production
+    end
+  end
+
+  def last_production_name
+    if last_production
+      self.last_production.name
+    end
+  end 
 
 end
