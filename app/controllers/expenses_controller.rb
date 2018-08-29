@@ -8,9 +8,13 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
+    if params[:production_id]
+      @production = Production.find(params[:production_id])
+    end
   end
 
   def create
+    #raise params.inspect
     @expense = current_user.expenses.build(expense_params)
       if @expense.save
       @expense.receipt.attach(expense_params[:receipt])

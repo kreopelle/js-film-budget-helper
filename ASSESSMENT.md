@@ -1,3 +1,4 @@
 - user able to add expense with pre-set production
-- looking at production show page, could say @epxense
+- looking at production show page, could say @expense
 - when clicking on @expense, go to a form to create an expense already belonging to that production
+- either a nested route under production or just a standard new option
