@@ -14,7 +14,6 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
     @expense = current_user.expenses.build(expense_params)
       if @expense.save
       @expense.receipt.attach(expense_params[:receipt])

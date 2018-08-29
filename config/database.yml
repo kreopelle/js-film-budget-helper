@@ -6,17 +6,17 @@ development:
   adapter: postgresql
   database: film_budget_helper
   encoding: unicode
-  password: "<%= ENV["PG_DEV"] %>"
+  password: <%= ENV["PG_DEV"] %>
   pool: 5
   username: film_budget_helper_development
 production:
   database: film_budget_helper
-  password: "<%= ENV["PG_PROD"] %>"
+  password: <%= ENV["PG_PROD"] %>
   username: film_budget_helper_production
 test:
   adapter: postgresql
   database: film_budget_helper
   encoding: unicode
-  password: "<%= ENV["PG_TEST"] %>"
+  password: <%= ENV["PG_TEST"] %>
   pool: 5
   username: film_budget_helper_test
