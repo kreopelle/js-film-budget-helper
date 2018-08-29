@@ -43,12 +43,6 @@ Generate your own `client_id` and `client_secret` to use the Google Omniauth fea
 
 Images are stored using ActiveStorage. For a production environment, set up a connection to a storage service. Follow the steps outlined in the [Rails Guides - Active Storage Overview](https://edgeguides.rubyonrails.org/active_storage_overview.html) for setup.
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
 ## Contributors Guide
 
 Bug reports, pull requests, and suggestions are welcome on GitHub at https://github.com/kreopelle/film-budget-helper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
