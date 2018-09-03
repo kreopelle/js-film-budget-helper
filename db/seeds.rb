@@ -1,4 +1,4 @@
-Department.create([
+departments = [
 
 {nys_acct: "101-00", category: "STORY & RIGHTS"},
 
@@ -34,4 +34,9 @@ Department.create([
 
 {nys_acct: "131-00", category:"ACTION PROPS"}
 
-])
+]
+
+
+ departments.each do |department_hash|
+   Department.find_or_create_by(department_hash)
+ end
