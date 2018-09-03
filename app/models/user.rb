@@ -29,6 +29,6 @@ class User < ApplicationRecord
     if last_production
       self.last_production.name
     end
-  end 
+  end
 
 end
