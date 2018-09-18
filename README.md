@@ -7,7 +7,7 @@ The Film Budget Helper is a Rails App designed to help producers track and organ
 * Conferences
 * Home Renovation
 
-Visit [Film Budget Helper](https://limitless-mountain-62032.herokuapp.com/) to begin using the app. A full walkthrough is available on [my blog](http://kaylareopelle.com/film_budget_helper_-_rails_project).
+Visit [Film Budget Helper](https://limitless-mountain-62032.herokuapp.com/) to begin using the app, or watch a [demo video](https://youtu.be/YBendn0Kpa8). To learn more about my process, visit [my blog](http://kaylareopelle.com/film_budget_helper_-_rails_project).
 
 ## Getting Started
 
