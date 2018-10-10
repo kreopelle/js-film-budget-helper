@@ -1,34 +1,19 @@
-default:
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-# development:
-#   adapter: postgresql
-#   database: film_budget_helper
-#   encoding: unicode
-#   password: <%= ENV["PG_DEV"] %>
-#   pool: 5
-#   username: film_budget_helper_development
-#
-# default: &default
-#   adapter: sqlite3
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   timeout: 5000
-
-development:
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: db/development.sqlite3
-
-production:
   database: film_budget_helper
   password: <%= ENV["PG_PROD"] %>
   username: film_budget_helper_production
-test:
-  adapter: postgresql
-  database: film_budget_helper
-  encoding: unicode
-  password: <%= ENV["PG_TEST"] %>
-  pool: 5
-  username: film_budget_helper_test
