@@ -29,5 +29,6 @@
 # Ignore environment files
 .env
 
-# Ignore personal notes fro project
+# Ignore personal notes for project
 NOTES.md
+JS_NOTES.md
