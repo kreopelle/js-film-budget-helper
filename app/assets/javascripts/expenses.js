@@ -4,6 +4,11 @@ $(function() {
 
 const attachListeners = () => {
   $(".show-expense").on('click', function() {
-    alert("Clicked")
+    showExpense(this)
   })
+}
+
+const showExpense = (expense) => {
+  alert("clicked")
+  console.log(expense.innerText)
 }
