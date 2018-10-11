@@ -4,6 +4,7 @@ class ProductionsController < ApplicationController
   before_action :require_admin
 
   def show
+    render json: @production
   end
 
   def new
