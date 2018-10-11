@@ -14,7 +14,7 @@
         <td><%= expense.department_category %></td>
         <td><%= expense.dollar_total %></td>
         <td><%= expense.status %></td>
-        <td><%= link_to "See More", user_expense_path(current_user, expense.id) %></td>
+        <td><a href="#" class="show-expense">See More</a></td>
       </tr>
     <% end %>
   </table>
