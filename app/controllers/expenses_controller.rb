@@ -4,7 +4,10 @@ class ExpensesController < ApplicationController
   before_action :require_admin, only: [:pending, :approved, :rejected]
 
   def show
-    render json: @expense
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @expense}
+    end
   end
 
   def new
