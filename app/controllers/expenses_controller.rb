@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
   before_action :require_admin, only: [:pending, :approved, :rejected]
 
   def show
+    render json: @expense
   end
 
   def new
