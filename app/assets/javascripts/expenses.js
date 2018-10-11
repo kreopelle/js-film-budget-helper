@@ -9,6 +9,8 @@ const attachListeners = () => {
 }
 
 const showExpense = (expense) => {
-  alert("clicked")
-  console.log(expense.innerText)
+  let expenseId = $(expense).data("id")
+  $.get(`/expenses/${expenseId}`, function(data) {
+    console.log(data)
+  })
 }
