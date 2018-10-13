@@ -5,7 +5,10 @@ class ExpensesController < ApplicationController
 
   def index
     @expenses = current_user.expenses
-    render json: @expenses
+    respond_to do |f|
+      f.html
+      f.json {render json: @expenses}
+    end 
   end
 
   def show
