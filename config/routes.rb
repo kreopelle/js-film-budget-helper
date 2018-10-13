@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback" => 'sessions#create'
 
   resources :users, only: [:new, :create, :show] do
-    resources :expenses, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :expenses
   end
 
   resources :productions, only: [:show, :new, :create, :edit, :update] do

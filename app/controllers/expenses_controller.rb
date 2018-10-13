@@ -3,6 +3,11 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, only: [:pending, :approved, :rejected]
 
+  def index
+    @expenses = current_user.expenses
+    render json: @expenses
+  end
+
   def show
     respond_to do |format|
       format.html {render :show}
