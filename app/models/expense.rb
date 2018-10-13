@@ -46,7 +46,11 @@ class Expense < ApplicationRecord
 
   def next
     expense = Expense.where("id > ?", id).first
-    expense ? expense : Expense.first
+    if expense
+      expense
+    else
+      Expense.first
+    end
   end
 
   private
