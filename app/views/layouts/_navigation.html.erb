@@ -7,8 +7,8 @@
     <ul class="navbar-nav">
       <% if current_user %>
       <li class="nav-item"><%= link_to "Home", root_path, class:"nav-link" %></li>
-      <li class="nav-item"><%= link_to "My Expenses", user_expenses_path(current_user), class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "New Expense", new_user_expense_path(current_user), class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "My Expenses", user_expenses_path(current_user), class: "nav-link all-expenses", :"data-id" => current_user.id %></li>
+      <li class="nav-item"><%= link_to "New Expense", new_user_expense_path(current_user), class: "nav-link", :"data-id" => current_user.id %></li>
       <li class="nav-item"><%= link_to "Log out", logout_path, class: "nav-link" %></li>
       <% else %>
       <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>

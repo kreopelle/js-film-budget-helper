@@ -4,16 +4,27 @@ $(function() {
 
 const attachListeners = () => {
 
-  displayExpenses()
+  $('.all-expenses').on('click', (e) => {
+    e.preventDefault()
+    let userId = $(this).attr('data-id')
+    fetch(`/users/${userId}/expenses.json`)
+    .then(res => res.json())
+    .then(expenses => {
+      $('#app-container').html('')
+      getExpenses(expenses)
+    })
+  })
 
 }
 
-const displayExpenses = () => {
-  const userId = $("h1").data("id")
-  $.get(`/users/${userId}/expenses`, function(data) {
-    const expensesTable = makeTable(["Vendor", "Date", "Total", "Details"]) + expenseColumns(data) + "</table>"
-    $("#user-expenses").append(expensesTable)
+const getExpenses = (expenses) => {
+  let expenseHtml = ''
+   expenses.forEach(expense => {
+    let newExpense = new Expense(expense)
+    expenseHtml += expenseColumn(newExpense)
   })
+  let expenseTable = makeTable(["Vendor", "Date", "Total", "Details"]) + expenseHtml + "</table>"
+  $('#app-container').html(expenseTable)
 }
 
 const showExpense = (expenseId) => {
@@ -42,10 +53,21 @@ const formatDate = (date) => {
   return date
 }
 
-const expenseColumns = (expenses) => {
-  expenseColumnString = ""
-  expenses.forEach(expense => {
-  expenseColumnString += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td><td><a href="#" data-id="${expense.id}" class="show-expense" onclick="showExpense(${expense.id})">See More</a></td></tr>`
-  })
-  return expenseColumnString
+function Expense(expense) {
+  this.id = expense.id
+  this.vendor = expense.vendor
+  this.date = expense.date
+  this.total = expense.total
+  this.production = expense.production.name
+}
+
+const expenseColumn = (expense) => {
+  let expenseColumn = `
+  <tr>
+  <td>${expense.vendor}</td>
+  <td>${formatDate(expense.date)}</td>
+  <td>$${expense.total}</td>
+  <td><a href="#" data-id="${expense.id}" class="show-expense" onclick="showExpense(${expense.id})">See More</a></td>
+  </tr>`
+  return expenseColumn
 }
