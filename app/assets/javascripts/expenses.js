@@ -11,6 +11,22 @@ const attachListeners = () => {
     getExpenses(userId)
   })
 
+  $('.new-expense').on('click', (e) => {
+    e.preventDefault()
+    let userId = $(e.target).attr("data-id")
+    $("#app-container").html('<h2>New Expense</h2><br>')
+    let newExpenseForm = `
+    <form action="users/${userId}/expenses" method="post">
+    Vendor: <input type="text" name="vendor"><br></br>
+    Date: <input type="date" name="date"><br></br>
+    Total: <input type="number" name="total"><br></br>
+    Description (optional): <input type="text" name="description"><br></br>
+    <input type="submit">
+    </form>
+    `
+    $("#app-container").append(newExpenseForm)
+  })
+
   $(document).on('click', '.show-expense', (e) => {
     e.preventDefault()
     let userId = $(e.target).attr("data-user")
