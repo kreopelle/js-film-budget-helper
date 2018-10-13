@@ -6,10 +6,6 @@ const attachListeners = () => {
 
   displayExpenses()
 
-  $(".show-expense").on('click', function() {
-    showExpense(this)
-  })
-
 }
 
 const displayExpenses = () => {
@@ -20,13 +16,11 @@ const displayExpenses = () => {
   })
 }
 
-const showExpense = (expense) => {
-  let expenseId = $(expense).data("id")
-  let divId = "display-expense-" + expenseId
-  $.get(`/expenses/${expenseId}`, function(data) {
-    $(divId).window(data)
+const showExpense = (expenseId) => {
+  const userId = $("h1").data("id")
+  $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
+    console.log(data)
   })
-  alert("click")
 }
 
 const makeTable = (headers) => {
