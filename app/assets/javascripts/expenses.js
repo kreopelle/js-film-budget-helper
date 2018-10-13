@@ -6,31 +6,32 @@ const attachListeners = () => {
 
   $('.all-expenses').on('click', (e) => {
     e.preventDefault()
-    let userId = $(this).attr('data-id')
-    fetch(`/users/${userId}/expenses.json`)
-    .then(res => res.json())
-    .then(expenses => {
-      $('#app-container').html('')
-      getExpenses(expenses)
-    })
+    let userId = $(e.target).attr("data-id")
+    history.pushState(null, null, `/users/${userId}/expenses`)
+    getExpenses(userId)
   })
 
   $(document).on('click', '.show-expense', (e) => {
     e.preventDefault()
     let expenseId = $(this).attr('data-id')
-    console.log(expenseId)
+    console.log(this)
   })
 
 }
 
-const getExpenses = (expenses) => {
-  let expenseColumns = ''
-  expenses.forEach(expense => {
-    let newExpense = new Expense(expense)
-    expenseColumns += newExpense.expenseColumn()
+const getExpenses = (userId) => {
+  fetch(`/users/${userId}/expenses.json`)
+  .then(res => res.json())
+  .then(expenses => {
+    $('#app-container').html('<h2>My Expenses</h2><br />')
+    let expenseColumns = ''
+    expenses.forEach(expense => {
+      let newExpense = new Expense(expense)
+      expenseColumns += newExpense.expenseColumn()
+    })
+    let expenseHeadings = ["Vendor", "Date", "Total", "Details"]
+    $('#app-container').append(fillTable(expenseHeadings, expenseColumns))
   })
-  let expenseHeadings = ["Vendor", "Date", "Total", "Details"]
-  $('#app-container').html(fillTable(expenseHeadings, expenseColumns))
 }
 
 const fillTable = (headings, columns) => {
