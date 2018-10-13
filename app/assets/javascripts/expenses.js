@@ -1,5 +1,3 @@
-const closeTable = "</tr></table>"
-
 $(function() {
   attachListeners()
 })
@@ -15,13 +13,21 @@ const attachListeners = () => {
 }
 
 const displayExpenses = () => {
-  makeTable(["Vendor", "Date", "Total"])
+  let table = makeTable(["Vendor", "Date", "Total"])
   const userId = $("h1").data("id")
-  console.log(userId)
+  let expenseColumns
   $.get(`/users/${userId}/expenses`, function(data) {
-    console.log(data)
+    const expenses = data
+    expenseColumns = expenses.forEach(expense => {
+      debugger
+      `<tr><td>${expense.vendor}</td><td>${expense.date}</td><td>${expense.total}</td></tr>`
+    })
   })
+  const expensesTable = table + expenseColumns + "</table>"
+  $("#user-expenses").append(expensesTable)
 }
+//<div id="display-expense-<%= expense.id %>"></div>
+//<td><a href="#" data-id="<%= expense.id %>" class="show-expense">See More</a></td>
 
 // incomplete, would like to set up index before continuing
 const showExpense = (expense) => {
@@ -38,5 +44,6 @@ const makeTable = (headers) => {
   headers.forEach((header) => {
     table += `<td><strong>${header}</strong></td>`
   })
+  table += "</tr>"
   return table
 }
