@@ -13,7 +13,9 @@ const attachListeners = () => {
 }
 
 const displayExpenses = () => {
-  $("#user-expenses").html("<p>Hello</p>")
+  const userId = $("h1").data("id")
+  console.log(userId)
+  //$("#user-expenses").html("<p>Hello</p>")
 }
 
 // incomplete, would like to set up index before continuing
