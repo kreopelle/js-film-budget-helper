@@ -15,6 +15,7 @@ const attachListeners = () => {
     e.preventDefault()
     let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
+    history.pushState(null, null, `/users/${userId}/expenses/${expenseId}`)
     showExpense(userId, expenseId)
   })
 
@@ -43,14 +44,11 @@ const showExpense = (userId, expenseId) => {
   fetch(`/users/${userId}/expenses/${expenseId}.json`)
   .then(res => res.json())
   .then(expense => {
-    console.log(expense)
+    $('#app-container').html(`<h2>Expense ${expenseId}`)
+    let newExpense = new Expense(expense)
+    let expenseHtml = newExpense.formatShow()
+    $('#app-container').append(expenseHtml)
   })
-  // $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
-  //   const expense = data
-  //   let details = "<ul>"
-  //   details += `<li>Description: ${expense.description || "None"}</li><li>Production: ${expense.production.name}</li>`
-  //   $("#show-expense").html(details)
-  // })
 }
 
 const makeTable = (headers) => {
@@ -76,6 +74,24 @@ function Expense(expense) {
   this.user = expense.user.id
   this.username = expense.user.name
 }
+
+Expense.prototype.formatShow = function(){
+  let expenseHtml = `
+  <h3>Vendor: ${this.vendor}</h3>
+  <p><strong>Date: </strong>${formatDate(this.date)}</p>
+  <p><strong>Total: </strong>$${this.total}</p>
+  <p><strong>Production: </strong>${ this.production_name }</p>
+  <p><strong>Submitted by: </strong>${ this.user_name }</p>
+  <p><strong>Description: </strong>${this.description || "None" }</p>
+  `
+  return expenseHtml
+}
+
+  // <p><strong>Department: </strong>${ this.department_category }</p>
+  // ${ image_tag(this.receipt, class:"img-fluid") }<br></br>
+  // ${ display_expense_status(current_user, this) }<br>
+  // <p>${ link_to "Edit Expense", edit_user_expense_path(current_user, this) } | ${ link_to "Delete Expense", expense_path(this), method: :delete } | ${ link_to "Back to My Expenses", user_path(current_user) }</p>
+
 
 Expense.prototype.expenseColumn = function(){
   let expenseColumn = `
