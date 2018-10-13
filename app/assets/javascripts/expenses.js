@@ -13,8 +13,9 @@ const attachListeners = () => {
 
   $(document).on('click', '.show-expense', (e) => {
     e.preventDefault()
-    let expenseId = $(this).attr('data-id')
-    console.log(this)
+    let userId = $(e.target).attr("data-user")
+    let expenseId = $(e.target).attr("data-id")
+    showExpense(userId, expenseId)
   })
 
 }
@@ -38,14 +39,16 @@ const fillTable = (headings, columns) => {
   return makeTable(headings) + columns + "</table>"
 }
 
-const showExpense = (expenseId) => {
-  const userId = $("h1").data("id")
-  $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
-    const expense = data
-    let details = "<ul>"
-    details += `<li>Description: ${expense.description || "None"}</li><li>Production: ${expense.production.name}</li>`
-    $("#show-expense").html(details)
-  })
+const showExpense = (userId, expenseId) => {
+  console.log(userId)
+  console.log(expenseId)
+  // const userId = $("h1").data("id")
+  // $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
+  //   const expense = data
+  //   let details = "<ul>"
+  //   details += `<li>Description: ${expense.description || "None"}</li><li>Production: ${expense.production.name}</li>`
+  //   $("#show-expense").html(details)
+  // })
 }
 
 const makeTable = (headers) => {
@@ -68,6 +71,8 @@ function Expense(expense) {
   this.date = expense.date
   this.total = expense.total
   this.production = expense.production.name
+  this.user = expense.user.id
+  this.username = expense.user.name
 }
 
 Expense.prototype.expenseColumn = function(){
@@ -76,7 +81,7 @@ Expense.prototype.expenseColumn = function(){
   <td>${this.vendor}</td>
   <td>${formatDate(this.date)}</td>
   <td>$${this.total}</td>
-  <td><a href="#" data-id="${this.id}" class="show-expense">See More</a></td>
+  <td><a href="#" data-user="${this.user}" data-id="${this.id}" class="show-expense">See More</a></td>
   </tr>`
   return expenseColumn
 }
