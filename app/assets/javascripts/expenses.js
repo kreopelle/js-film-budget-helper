@@ -15,16 +15,26 @@ const attachListeners = () => {
     })
   })
 
+  $(document).on('click', '.show-expense', (e) => {
+    e.preventDefault()
+    let expenseId = $(this).attr('data-id')
+    console.log(expenseId)
+  })
+
 }
 
 const getExpenses = (expenses) => {
-  let expenseHtml = ''
-   expenses.forEach(expense => {
+  let expenseColumns = ''
+  expenses.forEach(expense => {
     let newExpense = new Expense(expense)
-    expenseHtml += expenseColumn(newExpense)
+    expenseColumns += newExpense.expenseColumn()
   })
-  let expenseTable = makeTable(["Vendor", "Date", "Total", "Details"]) + expenseHtml + "</table>"
-  $('#app-container').html(expenseTable)
+  let expenseHeadings = ["Vendor", "Date", "Total", "Details"]
+  $('#app-container').html(fillTable(expenseHeadings, expenseColumns))
+}
+
+const fillTable = (headings, columns) => {
+  return makeTable(headings) + columns + "</table>"
 }
 
 const showExpense = (expenseId) => {
@@ -39,9 +49,7 @@ const showExpense = (expenseId) => {
 
 const makeTable = (headers) => {
   let table = "<table class='table'><tr>"
-  headers.forEach((header) => {
-    table += `<td><strong>${header}</strong></td>`
-  })
+  headers.forEach((header) => { table += `<td><strong>${header}</strong></td>`})
   table += "</tr>"
   return table
 }
@@ -61,13 +69,13 @@ function Expense(expense) {
   this.production = expense.production.name
 }
 
-const expenseColumn = (expense) => {
+Expense.prototype.expenseColumn = function(){
   let expenseColumn = `
   <tr>
-  <td>${expense.vendor}</td>
-  <td>${formatDate(expense.date)}</td>
-  <td>$${expense.total}</td>
-  <td><a href="#" data-id="${expense.id}" class="show-expense" onclick="showExpense(${expense.id})">See More</a></td>
+  <td>${this.vendor}</td>
+  <td>${formatDate(this.date)}</td>
+  <td>$${this.total}</td>
+  <td><a href="#" data-id="${this.id}" class="show-expense">See More</a></td>
   </tr>`
   return expenseColumn
 }
