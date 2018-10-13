@@ -13,16 +13,9 @@ const attachListeners = () => {
 }
 
 const displayExpenses = () => {
-  let table = makeTable(["Vendor", "Date", "Total"])
   const userId = $("h1").data("id")
-  let expenseColumns = ""
   $.get(`/users/${userId}/expenses`, function(data) {
-    let expenses = data
-    expenses.forEach(expense => {
-    expenseColumns += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td></tr>`
-    })
-    const expensesTable = table + expenseColumns + "</table>"
-    debugger
+    const expensesTable = makeTable(["Vendor", "Date", "Total"]) + expenseColumns(data) + "</table>"
     $("#user-expenses").append(expensesTable)
   })
 }
@@ -53,4 +46,12 @@ const formatDate = (date) => {
   date = date.split("-")
   date = date[1] + "/" + date[2] + "/" + date[0]
   return date
+}
+
+const expenseColumns = (expenses) => {
+  expenseColumnString = ""
+  expenses.forEach(expense => {
+  expenseColumnString += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td></tr>`
+  })
+  return expenseColumnString
 }
