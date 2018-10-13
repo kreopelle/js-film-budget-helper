@@ -19,7 +19,10 @@ const displayExpenses = () => {
 const showExpense = (expenseId) => {
   const userId = $("h1").data("id")
   $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
-    console.log(data)
+    const expense = data
+    let details = "<ul>"
+    details += `<li>Description: ${expense.description || "None"}</li><li>Production: ${expense.production.name}</li>`
+    $("#show-expense").html(details)
   })
 }
 
