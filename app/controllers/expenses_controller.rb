@@ -9,7 +9,10 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    render json: @expense
+    respond_to do |f|
+      f.html
+      f.json {render json: @expense}
+    end
   end
 
   def new
