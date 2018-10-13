@@ -22,10 +22,13 @@ const attachListeners = () => {
 
   $(document).on('click', '.next-expense', (e) => {
     e.preventDefault()
-    let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
     // not sure why fetch only requires expenses/:id/next and not a user path prefix
     fetch(`expenses/${expenseId}/next`)
+    .then(res => res.json())
+    .then(expense => {
+      showExpense(expense.user.id, expense.id)
+    })
   })
 
 }
@@ -92,7 +95,7 @@ Expense.prototype.formatShow = function(){
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Submitted by: </strong>${ this.username }</p>
   <p><strong>Description: </strong>${this.description || "None" }</p>
-  <button class="next-expense" data-id="${this.id}" data-user="${this.user}">Next</button>
+  <button class="next-expense" data-id="${this.id}">Next</button>
   `
   return expenseHtml
 }
