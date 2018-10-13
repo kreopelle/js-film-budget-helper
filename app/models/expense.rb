@@ -44,6 +44,11 @@ class Expense < ApplicationRecord
     self.production.name
   end
 
+  def next
+    expense = Expense.where("id > ?", id).first
+    expense ? expense : Expense.first
+  end
+
   private
 
   def correct_image_type

@@ -18,4 +18,8 @@ class ExpensePolicy < ApplicationPolicy
     update?
   end
 
+  def next?
+    user.owns_expense(@expense)
+  end
+
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show] do
     resources :expenses
+    get 'expenses/:id/next', to: 'expenses#next'
   end
 
   resources :productions, only: [:show, :new, :create, :edit, :update] do

@@ -15,7 +15,8 @@ const attachListeners = () => {
     e.preventDefault()
     let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
-    history.pushState(null, null, `/users/${userId}/expenses/${expenseId}`)
+    //some problem with fetching next when setting the pushState on show
+    //history.pushState(null, null, `/users/${userId}/expenses/${expenseId}`)
     showExpense(userId, expenseId)
   })
 
@@ -23,7 +24,8 @@ const attachListeners = () => {
     e.preventDefault()
     let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
-    fetch(`users/${userId}/expenses/${expenseId}/next`)
+    // not sure why fetch only requires expenses/:id/next and not a user path prefix
+    fetch(`expenses/${expenseId}/next`)
   })
 
 }
@@ -87,10 +89,10 @@ Expense.prototype.formatShow = function(){
   <h3>Vendor: ${this.vendor}</h3>
   <p><strong>Date: </strong>${formatDate(this.date)}</p>
   <p><strong>Total: </strong>$${this.total}</p>
-  <p><strong>Production: </strong>${ this.production_name }</p>
-  <p><strong>Submitted by: </strong>${ this.user_name }</p>
+  <p><strong>Production: </strong>${ this.production }</p>
+  <p><strong>Submitted by: </strong>${ this.username }</p>
   <p><strong>Description: </strong>${this.description || "None" }</p>
-  <button class="next-expense">Next</button>
+  <button class="next-expense" data-id="${this.id}" data-user="${this.user}">Next</button>
   `
   return expenseHtml
 }

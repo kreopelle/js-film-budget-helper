@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :require_login
-  before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_expense, only: [:show, :edit, :update, :destroy, :next]
   before_action :require_admin, only: [:pending, :approved, :rejected]
 
   def index
@@ -8,7 +8,7 @@ class ExpensesController < ApplicationController
     respond_to do |f|
       f.html
       f.json {render json: @expenses}
-    end 
+    end
   end
 
   def show
@@ -16,6 +16,11 @@ class ExpensesController < ApplicationController
       f.html
       f.json {render json: @expense}
     end
+  end
+
+  def next
+    @next_expense = @expense.next
+    render json: @next_expense
   end
 
   def new
