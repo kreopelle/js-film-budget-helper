@@ -19,7 +19,6 @@ const displayExpenses = () => {
   $.get(`/users/${userId}/expenses`, function(data) {
     const expenses = data
     expenseColumns = expenses.forEach(expense => {
-      debugger
       `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>${expense.total}</td></tr>`
     })
   })
@@ -48,7 +47,7 @@ const makeTable = (headers) => {
   return table
 }
 
-const dateFormatter = (date) => {
+const formatDate = (date) => {
   date = date.split('T')[0]
   date = date.split("-")
   date = date[1] + "/" + date[2] + "/" + date[0]
