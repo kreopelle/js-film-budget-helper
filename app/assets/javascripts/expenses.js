@@ -3,9 +3,17 @@ $(function() {
 })
 
 const attachListeners = () => {
+
+  displayExpenses()
+
   $(".show-expense").on('click', function() {
     showExpense(this)
   })
+
+}
+
+const displayExpenses = () => {
+  $("#user-expenses").html("<p>Hello</p>")
 }
 
 // incomplete, would like to set up index before continuing
