@@ -15,15 +15,16 @@ const attachListeners = () => {
 const displayExpenses = () => {
   let table = makeTable(["Vendor", "Date", "Total"])
   const userId = $("h1").data("id")
-  let expenseColumns
+  let expenseColumns = ""
   $.get(`/users/${userId}/expenses`, function(data) {
-    const expenses = data
-    expenseColumns = expenses.forEach(expense => {
-      `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>${expense.total}</td></tr>`
+    let expenses = data
+    expenses.forEach(expense => {
+    expenseColumns += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td></tr>`
     })
+    const expensesTable = table + expenseColumns + "</table>"
+    debugger
+    $("#user-expenses").append(expensesTable)
   })
-  const expensesTable = table + expenseColumns + "</table>"
-  $("#user-expenses").append(expensesTable)
 }
 //<div id="display-expense-<%= expense.id %>"></div>
 //<td><a href="#" data-id="<%= expense.id %>" class="show-expense">See More</a></td>
