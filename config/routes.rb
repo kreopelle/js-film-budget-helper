@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :expenses, only: [:show, :new, :create]
   end
 
-  resources :expenses, only: [:show, :update, :destroy]
+  resources :expenses, only: [:update, :destroy]
 
   get 'pending_expenses', to: 'expenses#pending'
   get 'approved_expenses', to: 'expenses#approved'
