@@ -20,7 +20,6 @@ const displayExpenses = () => {
   })
 }
 
-// incomplete, would like to set up index before continuing
 const showExpense = (expense) => {
   let expenseId = $(expense).data("id")
   let divId = "display-expense-" + expenseId
@@ -49,7 +48,7 @@ const formatDate = (date) => {
 const expenseColumns = (expenses) => {
   expenseColumnString = ""
   expenses.forEach(expense => {
-  expenseColumnString += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td><td><a href="#" data-id="${expense.id}" class="show-expense">See More</a></td></tr>`
+  expenseColumnString += `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>$${expense.total}</td><td><a href="#" data-id="${expense.id}" class="show-expense" onclick="showExpense(${expense.id})">See More</a></td></tr>`
   })
   return expenseColumnString
 }
