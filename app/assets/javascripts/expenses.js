@@ -19,6 +19,13 @@ const attachListeners = () => {
     showExpense(userId, expenseId)
   })
 
+  $(document).on('click', '.next-expense', (e) => {
+    e.preventDefault()
+    let userId = $(e.target).attr("data-user")
+    let expenseId = $(e.target).attr("data-id")
+    fetch(`users/${userId}/expenses/${expenseId}/next`)
+  })
+
 }
 
 const getExpenses = (userId) => {
@@ -83,6 +90,7 @@ Expense.prototype.formatShow = function(){
   <p><strong>Production: </strong>${ this.production_name }</p>
   <p><strong>Submitted by: </strong>${ this.user_name }</p>
   <p><strong>Description: </strong>${this.description || "None" }</p>
+  <button class="next-expense">Next</button>
   `
   return expenseHtml
 }
