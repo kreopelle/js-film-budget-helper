@@ -56,7 +56,7 @@ const showExpense = (userId, expenseId) => {
   fetch(`/users/${userId}/expenses/${expenseId}.json`)
   .then(res => res.json())
   .then(expense => {
-    $('#app-container').html(`<h2>Expense ${expenseId}`)
+    $('#app-container').html(`<h5>Expense ${expenseId}</h5><br>`)
     let newExpense = new Expense(expense)
     let expenseHtml = newExpense.formatShow()
     $('#app-container').append(expenseHtml)
@@ -89,12 +89,12 @@ function Expense(expense) {
 
 Expense.prototype.formatShow = function(){
   let expenseHtml = `
-  <h3>Vendor: ${this.vendor}</h3>
+  <h3>Vendor: ${this.vendor}</h3><br>
   <p><strong>Date: </strong>${formatDate(this.date)}</p>
   <p><strong>Total: </strong>$${this.total}</p>
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Submitted by: </strong>${ this.username }</p>
-  <p><strong>Description: </strong>${this.description || "None" }</p>
+  <p><strong>Description: </strong>${this.description || "None" }</p><br>
   <button class="next-expense" data-id="${this.id}">Next</button>
   `
   return expenseHtml
