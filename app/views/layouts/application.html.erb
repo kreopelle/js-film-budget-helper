@@ -10,13 +10,18 @@
   <body>
 
     <div class="container" role="main">
+      <%= render 'layouts/navigation' %>
       <br>
-      <% if flash.any? %>
-          <% flash.each do |key, value| %>
-            <div class="alert alert-info alert-<%= key %>"><%= value %></div>
-          <% end %>
-      <% end %>
-      <%= yield %>
+      <div id="errors">
+        <% if flash.any? %>
+            <% flash.each do |key, value| %>
+              <div class="alert alert-info alert-<%= key %>"><%= value %></div>
+            <% end %>
+        <% end %>
+      </div>
+      <div id="app-container">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
