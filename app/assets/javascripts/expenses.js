@@ -20,7 +20,7 @@ const displayExpenses = () => {
     const expenses = data
     expenseColumns = expenses.forEach(expense => {
       debugger
-      `<tr><td>${expense.vendor}</td><td>${expense.date}</td><td>${expense.total}</td></tr>`
+      `<tr><td>${expense.vendor}</td><td>${formatDate(expense.date)}</td><td>${expense.total}</td></tr>`
     })
   })
   const expensesTable = table + expenseColumns + "</table>"
@@ -46,4 +46,11 @@ const makeTable = (headers) => {
   })
   table += "</tr>"
   return table
+}
+
+const dateFormatter = (date) => {
+  date = date.split('T')[0]
+  date = date.split("-")
+  date = date[1] + "/" + date[2] + "/" + date[0]
+  return date
 }
