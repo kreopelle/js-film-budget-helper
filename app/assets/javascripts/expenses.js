@@ -40,9 +40,11 @@ const fillTable = (headings, columns) => {
 }
 
 const showExpense = (userId, expenseId) => {
-  console.log(userId)
-  console.log(expenseId)
-  // const userId = $("h1").data("id")
+  fetch(`/users/${userId}/expenses/${expenseId}.json`)
+  .then(res => res.json())
+  .then(expense => {
+    console.log(expense)
+  })
   // $.get(`/users/${userId}/expenses/${expenseId}`, function(data) {
   //   const expense = data
   //   let details = "<ul>"
