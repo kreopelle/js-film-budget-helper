@@ -31,17 +31,16 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = current_user.expenses.build(expense_params)
-    if @expense.save
-      @expense.receipt.attach(expense_params[:receipt])
-      respond_to do |f|
-        f.html
-        f.json {render json: @expense}
-      end
+    @expense = current_user.expenses.create(expense_params)
+    render json: @expense, status: 201
+    end
+    # if @expense.save
+    #   @expense.receipt.attach(expense_params[:receipt])
+
     #   #redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
     # else
     #   render :new
-    end
+    # end
   end
 
   def edit
