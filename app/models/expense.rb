@@ -7,20 +7,20 @@ class Expense < ApplicationRecord
   has_one_attached :receipt
 
   validates :date, presence: true
-  validates :department_id, presence: true
-  validates :department, presence: true, if: -> { department_id.present? }
+  #validates :department_id, presence: true
+  #validates :department, presence: true, if: -> { department_id.present? }
   validates :production_id, presence: true
   validates :production, presence: true, if: -> { production_id.present? }
-  validates :status, presence: true
-  validates :status, inclusion: { in: ["pending", "approved", "not approved"], message: "%{value} is not a valid status"}
+#  validates :status, presence: true
+#  validates :status, inclusion: { in: ["pending", "approved", "not approved"], message: "%{value} is not a valid status"}
   validates :total, numericality: { greater_than: 0.01 }
   validates :vendor, presence: true
 
-  validate :correct_image_type
+#  validate :correct_image_type
 
-  scope :pending, -> {where(status: "pending")}
-  scope :approved, -> {where(status: "approved")}
-  scope :not_approved, -> {where(status: "not approved")}
+#  scope :pending, -> {where(status: "pending")}
+#  scope :approved, -> {where(status: "approved")}
+#  scope :not_approved, -> {where(status: "not approved")}
 
   def formatted_date
     self.date.strftime("%m/%d/%y")
