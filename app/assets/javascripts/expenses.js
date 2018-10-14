@@ -11,10 +11,15 @@ const attachListeners = () => {
     getExpenses(userId)
   })
 
-  $(document).on('submit', '.new-expense', (e) => {
+  $(document).on('submit', '#new-expense-form', (e) => {
     e.preventDefault()
+    //alert('hello')
+    let userId = $(".all-expenses").attr("data-id")
     let values = $(this).serialize()
-    console.log(values)
+    let posting = $.post(`/users/${userId}/expenses`, values)
+    posting.done(function(expense) {
+        showExpense(expense.user.id, expense.id)
+      })
   })
 
   $(document).on('click', '.show-expense', (e) => {
