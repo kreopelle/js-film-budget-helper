@@ -97,6 +97,7 @@ function Expense(expense) {
   this.production = expense.production.name
   this.userId = expense.user.id
   this.description = expense.description
+  this.departmentCategory = expense.department.category
   this.userName = expense.user.name
 }
 
@@ -106,18 +107,13 @@ Expense.prototype.formatShow = function(){
   <p><strong>Date: </strong>${formatDate(this.date)}</p>
   <p><strong>Total: </strong>$${this.total}</p>
   <p><strong>Production: </strong>${ this.production }</p>
+  <p><strong>Department: </strong>${ this.departmentCategory }</p>
   <p><strong>Submitted by: </strong>${ this.username }</p>
   <p><strong>Description: </strong>${this.description || "None"}</p><br>
   <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
   `
   return expenseHtml
 }
-
-  // <p><strong>Department: </strong>${ this.department_category }</p>
-  // ${ image_tag(this.receipt, class:"img-fluid") }<br></br>
-  // ${ display_expense_status(current_user, this) }<br>
-  // <p>${ link_to "Edit Expense", edit_user_expense_path(current_user, this) } | ${ link_to "Delete Expense", expense_path(this), method: :delete } | ${ link_to "Back to My Expenses", user_path(current_user) }</p>
-
 
 Expense.prototype.expenseColumn = function(){
   let expenseColumn = `
