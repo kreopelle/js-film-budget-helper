@@ -18,8 +18,8 @@ const attachListeners = () => {
       url: $(this).attr('action'),
       data: $(this).serialize(),
       dataType: "JSON",
-      success: function(data) {
-        console.log(data)
+      success: function(expense) {
+        showExpense(expense.user.id, expense.id)
       }
     })
   })
@@ -28,16 +28,14 @@ const attachListeners = () => {
     e.preventDefault()
     let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
-    //some problem with fetching next when setting the pushState on show
-    //history.pushState(null, null, `/users/${userId}/expenses/${expenseId}`)
     showExpense(userId, expenseId)
   })
 
   $(document).on('click', '.next-expense', (e) => {
     e.preventDefault()
+    let userId = $(e.target).attr("data-user")
     let expenseId = $(e.target).attr("data-id")
-    // not sure why fetch only requires expenses/:id/next and not a user path prefix
-    fetch(`expenses/${expenseId}/next`)
+    fetch(`${expenseId}/next.json`)
     .then(res => res.json())
     .then(expense => {
       showExpense(expense.user.id, expense.id)
@@ -66,6 +64,7 @@ const fillTable = (headings, columns) => {
 }
 
 const showExpense = (userId, expenseId) => {
+  history.pushState(null, null, `/users/${userId}/expenses/${expenseId}`)
   fetch(`/users/${userId}/expenses/${expenseId}.json`)
   .then(res => res.json())
   .then(expense => {
@@ -96,8 +95,9 @@ function Expense(expense) {
   this.date = expense.date
   this.total = expense.total
   this.production = expense.production.name
-  this.user = expense.user.id
-  this.username = expense.user.name
+  this.userId = expense.user.id
+  this.description = expense.description
+  this.userName = expense.user.name
 }
 
 Expense.prototype.formatShow = function(){
@@ -107,8 +107,8 @@ Expense.prototype.formatShow = function(){
   <p><strong>Total: </strong>$${this.total}</p>
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Submitted by: </strong>${ this.username }</p>
-  <p><strong>Description: </strong>${this.description || "None" }</p><br>
-  <button class="next-expense" data-id="${this.id}">Next</button>
+  <p><strong>Description: </strong>${this.description || "None"}</p><br>
+  <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
   `
   return expenseHtml
 }
@@ -125,7 +125,7 @@ Expense.prototype.expenseColumn = function(){
   <td>${this.vendor}</td>
   <td>${formatDate(this.date)}</td>
   <td>$${this.total}</td>
-  <td><a href="#" data-user="${this.user}" data-id="${this.id}" class="show-expense">See More</a></td>
+  <td><a href="#" data-user="${this.userId}" data-id="${this.id}" class="show-expense">See More</a></td>
   </tr>`
   return expenseColumn
 }
