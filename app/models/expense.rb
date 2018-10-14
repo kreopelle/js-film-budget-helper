@@ -4,11 +4,11 @@ class Expense < ApplicationRecord
   belongs_to :production
   belongs_to :department
 
-  has_one_attached :receipt
+#  has_one_attached :receipt
 
   validates :date, presence: true
-  #validates :department_id, presence: true
-  #validates :department, presence: true, if: -> { department_id.present? }
+  validates :department_id, presence: true
+  validates :department, presence: true, if: -> { department_id.present? }
   validates :production_id, presence: true
   validates :production, presence: true, if: -> { production_id.present? }
 #  validates :status, presence: true
