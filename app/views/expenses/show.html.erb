@@ -4,11 +4,6 @@
 <p><strong>Department: </strong><%= @expense.department_category %></p>
 <p><strong>Production: </strong><%= @expense.production_name %></p>
 <p><strong>Submitted by: </strong><%= @expense.user_name %></p>
-<%= expense_description(@expense) %>
+<p><strong>Description: </strong><%= @expense.description ? @expense.description : "None" %></p>
 
-<%= display_expense_status(current_user, @expense) %><br>
-
-<p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_path(current_user) %></p>
-
-
-<%= image_tag(@expense.receipt, class:"img-fluid") %><br></br>
+<p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_expenses_path(current_user) %></p>
