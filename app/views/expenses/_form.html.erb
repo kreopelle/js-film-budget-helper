@@ -2,9 +2,6 @@
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br></br>
 
-  <%= f.label :department_id %>
-  <%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
-
   <%= f.label :date %>
   <%= f.date_field :date %><br></br>
 
@@ -19,9 +16,6 @@
     <%= f.collection_select :production_id, Production.all, :id, :name, {:include_blank => 'Please Select'} %>
   <% end %>
   <br></br>
-
-  <%= f.label :receipt %>
-  <%= f.file_field :receipt %><br></br>
 
   <%= f.label :description, "Description - Optional" %>
   <%= f.text_field :description %><br></br>
