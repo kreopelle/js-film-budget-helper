@@ -2,6 +2,9 @@
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br></br>
 
+  <%= f.label :department_id %>
+<%= f.collection_select :department_id, Department.all, :id, :category, {:include_blank => 'Please Select'} %><br></br>
+
   <%= f.label :date %>
   <%= f.date_field :date %><br></br>
 
