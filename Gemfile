@@ -55,7 +55,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveStorage variant
  gem 'mini_magick', '~> 4.8'
-
+ gem 'rmagick'
 # Policies
  gem 'pundit'
 
