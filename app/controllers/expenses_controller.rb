@@ -86,7 +86,7 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:date, :department_id, :description, :production_id, :receipt, :status, :total, :user_id, :vendor)
+    params.permit(:date, :department_id, :description, :production_id, :receipt, :status, :total, :user_id, :vendor)
   end
 
 end
