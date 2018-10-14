@@ -1,4 +1,4 @@
-<%= form_for ([current_user, expense]) do |f| %>
+<%= form_for ([current_user, expense]), :html => {:id => "new-expense-form"} do |f| %>
   <%= f.label :vendor %>
   <%= f.text_field :vendor %><br></br>
 
@@ -20,5 +20,6 @@
   <%= f.label :description, "Description - Optional" %>
   <%= f.text_field :description %><br></br>
 
-  <%= f.submit class: 'submit new-expense' %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit class: 'submit' %>
 <% end %>
