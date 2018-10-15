@@ -21,22 +21,40 @@ departments = [
    Department.find_or_create_by(department_hash)
  end
 
- Production.create(name: "Parks and Rec", budget: 1000000)
- Production.create(name: "The Manhattan Front", budget: 250000)
+productions = [
+  {name: "Parks and Rec", budget: 1000000},
+  {name: "The Manhattan Front", budget: 250000}
+]
 
- User.create(name: "Ada Lovelace", email: "ada@lovelace.com", password: "ada", admin: true)
- User.create(name: "Ron Swanson", email: "email@pawnee.gov", password: "ron")
- User.create(name: "Leslie Knope", email: "leslie@pawnee.gov", password: "leslie")
- User.create(name: "Kayla Reopelle", email: "kreopelle@gmail.com", password: "kayla")
+productions.each do |production_hash|
+  Production.find_or_create_by(production_hash)
+end
 
- Expense.create(vendor: "Charlie Mulligan's Steakhouse", date: DateTime.new(2016,5,2), user_id: 2, production_id: 1, total: 200, department_id: 12, description: "Steak and Lagavulin 16")
+  users = [
+    {name: "Ada Lovelace", email: "ada@lovelace.com", password: "ada", admin: true},
+    {name: "Ron Swanson", email: "email@pawnee.gov", password: "ron"},
+    {name: "Leslie Knope", email: "leslie@pawnee.gov", password: "leslie"},
+    {name: "Kayla Reopelle", email: "kreopelle@gmail.com", password: "kayla"}
+  ]
 
- Expense.create(vendor: "Paunch Burger", date: DateTime.new(2016,5,20), user_id: 3, production_id: 1, total: 5, department_id: 12, description: "Child size soda")
+users.each do |user_hash|
+  User.find_or_create_by(user_hash)
+end
 
- Expense.create(vendor: "JJ's Diner", date: DateTime.new(2016,6,1), user_id: 3, production_id: 1, total: 20, department_id: 12, description: "Waffles")
+expenses = [
+ {vendor: "Charlie Mulligan's Steakhouse", date: DateTime.new(2016,5,2), user_id: 2, production_id: 1, total: 200, department_id: 12, description: "Steak and Lagavulin 16")},
+ 
+ {vendor: "Paunch Burger", date: DateTime.new(2016,5,20), user_id: 3, production_id: 1, total: 5, department_id: 12, description: "Child size soda")},
 
- Expense.create(vendor: "Hello World", date: DateTime.new(2016,5,31), user_id: 4, production_id: 2, total: 838, department_id: 8, description: "Walkie Talkies")
+ {vendor: "JJ's Diner", date: DateTime.new(2016,6,1), user_id: 3, production_id: 1, total: 20, department_id: 12, description: "Waffles")},
 
- Expense.create(vendor: "Home Depot", date: DateTime.new(2016,6,10), user_id: 4, production_id: 2, total: 125, department_id: 11, description: "Lumber")
+ {vendor: "Hello World", date: DateTime.new(2016,5,31), user_id: 4, production_id: 2, total: 838, department_id: 8, description: "Walkie Talkies")},
 
- Expense.create(vendor: "City of Paris Dry Goods Co.", date: DateTime.new(2018,10,14), user_id: 1, production_id: 2, total: 10, department_id: 14, description: "Corset")
+ {vendor: "Home Depot", date: DateTime.new(2016,6,10), user_id: 4, production_id: 2, total: 125, department_id: 11, description: "Lumber")},
+
+ {vendor: "City of Paris Dry Goods Co.", date: DateTime.new(2018,10,14), user_id: 1, production_id: 2, total: 10, department_id: 14, description: "Corset")}
+]
+
+expenses.each do |expense_hash|
+  Expense.find_or_create_by(expense_hash)
+end
