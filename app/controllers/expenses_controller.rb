@@ -42,10 +42,9 @@ class ExpensesController < ApplicationController
   def update
     @expense.update(expense_params)
     @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
-    if current_user.admin
-      redirect_to production_expense_path(production_id: @expense.production_id, id: @expense.id)
-    else
-      redirect_to user_expense_path(user_id: current_user.id, id: @expense.id)
+    respond_to do |f|
+      f.html
+      f.json {render json: @expense}
     end
   end
 
