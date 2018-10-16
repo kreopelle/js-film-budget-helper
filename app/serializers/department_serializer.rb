@@ -1,3 +1,3 @@
 class DepartmentSerializer < ActiveModel::Serializer
-  attributes :id, :category, :nys_acct
+  attributes :id, :category
 end
