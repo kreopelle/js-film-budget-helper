@@ -54,7 +54,7 @@ const getExpenses = (userId) => {
       let newExpense = new Expense(expense)
       expenseColumns += newExpense.expenseColumn()
     })
-    let expenseHeadings = ["Vendor", "Date", "Total", "Details"]
+    let expenseHeadings = ["Vendor", "Date", "Department", "Total", "Details"]
     $('#app-container').append(fillTable(expenseHeadings, expenseColumns))
   })
 }
@@ -85,7 +85,9 @@ const makeTable = (headers) => {
 const formatDate = (date) => {
   date = date.split('T')[0]
   date = date.split("-")
-  date = date[1] + "/" + date[2] + "/" + date[0]
+  year = date[0]
+  year = year.slice(2)
+  date = date[1] + "/" + date[2] + "/" + year
   return date
 }
 
@@ -97,7 +99,7 @@ function Expense(expense) {
   this.production = expense.production.name
   this.userId = expense.user.id
   this.description = expense.description
-  this.departmentCategory = expense.department.category
+  this.department = expense.department.category
   this.userName = expense.user.name
 }
 
@@ -107,7 +109,7 @@ Expense.prototype.formatShow = function(){
   <p><strong>Date: </strong>${formatDate(this.date)}</p>
   <p><strong>Total: </strong>$${this.total}</p>
   <p><strong>Production: </strong>${ this.production }</p>
-  <p><strong>Department: </strong>${ this.departmentCategory }</p>
+  <p><strong>Department: </strong>${ this.department }</p>
   <p><strong>Submitted by: </strong>${ this.userName }</p>
   <p><strong>Description: </strong>${this.description || "None"}</p><br>
   <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
@@ -120,6 +122,7 @@ Expense.prototype.expenseColumn = function(){
   <tr>
   <td>${this.vendor}</td>
   <td>${formatDate(this.date)}</td>
+  <td>${this.department}</td>
   <td>$${this.total}</td>
   <td><a href="#" data-user="${this.userId}" data-id="${this.id}" class="show-expense">See More</a></td>
   </tr>`
