@@ -45,11 +45,11 @@ class Expense < ApplicationRecord
   end
 
   def next
-    expense = Expense.where("id > ?", id).first
+    expense = self.user.expenses.where("id > ?", id).first
     if expense
       expense
     else
-      Expense.first
+      self.user.expenses.first
     end
   end
 
