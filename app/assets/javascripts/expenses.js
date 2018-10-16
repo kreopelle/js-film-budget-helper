@@ -82,6 +82,12 @@ const makeTable = (headers) => {
   return table
 }
 
+const total = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 const formatDate = (date) => {
   date = date.split('T')[0]
   date = date.split("-")
@@ -111,7 +117,8 @@ Expense.prototype.formatShow = function(){
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Department: </strong>${ this.department }</p>
   <p><strong>Submitted by: </strong>${ this.userName }</p>
-  <p><strong>Description: </strong>${this.description || "None"}</p><br>
+  <p><strong>Description: </strong>${this.description || "None"}</p><br />
+  <p><a href="/users/${this.userId}/expenses/${this.id}/edit">Edit Expense</a> | <a data-confirm="Are you sure you'd like to delete this expense?" data-method="delete" href="/users/${this.userId}/expenses/${this.id}/" rel="nofollow">Delete Expense</a> | <a href="/users/${this.userId}/expenses">Back to My Expenses</a></p><br>
   <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
   `
   return expenseHtml
@@ -123,7 +130,7 @@ Expense.prototype.expenseColumn = function(){
   <td>${this.vendor}</td>
   <td>${formatDate(this.date)}</td>
   <td>${this.department}</td>
-  <td>$${this.total}</td>
+  <td>${total.format(this.total)}</td>
   <td><a href="#" data-user="${this.userId}" data-id="${this.id}" class="show-expense">See More</a></td>
   </tr>`
   return expenseColumn
