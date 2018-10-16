@@ -108,7 +108,7 @@ Expense.prototype.formatShow = function(){
   <p><strong>Total: </strong>$${this.total}</p>
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Department: </strong>${ this.departmentCategory }</p>
-  <p><strong>Submitted by: </strong>${ this.username }</p>
+  <p><strong>Submitted by: </strong>${ this.userName }</p>
   <p><strong>Description: </strong>${this.description || "None"}</p><br>
   <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
   `
