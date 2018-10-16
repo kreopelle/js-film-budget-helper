@@ -1,13 +1,8 @@
 <h1 data-id="<%=current_user.id%>">Hello <%= current_user.name %>!</h1>
-<br></br>
-<%= render partial: 'admin' %>
-
-<p><strong>My Expenses</strong></p>
-
-
-
-<div id="user-expenses"></div>
-
-<div id="show-expense"></div>
-<br></br>
-<%= link_to "Create New Expense for #{current_user.last_production_name}", new_production_expense_path(current_user.last_production) if current_user.last_production %><br>
+<br>
+<!-- <%= render partial: 'admin' %> -->
+<p>Welcome back to Film Budget Helper! How can I help you?</p>
+<!-- <p><strong>My Expenses</strong></p> -->
+<%= link_to "View My Expenses", user_expenses_path(current_user) %><br>
+<%= link_to "Create New Expense", new_user_expense_path(current_user) %><br>
+<%= link_to "Create New Expense for #{current_user.last_production_name}", new_production_expense_path(current_user.last_production) if current_user.last_production %>
