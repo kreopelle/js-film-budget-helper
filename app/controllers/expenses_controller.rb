@@ -1,4 +1,5 @@
 class ExpensesController < ApplicationController
+  require 'pry'
   before_action :require_login
   before_action :set_expense, only: [:show, :edit, :update, :destroy, :next]
   before_action :require_admin, only: [:pending, :approved, :rejected]
@@ -41,7 +42,6 @@ class ExpensesController < ApplicationController
 
   def update
     @expense.update(expense_params)
-    @expense.receipt.attach(expense_params[:receipt]) if expense_params[:receipt]
     respond_to do |f|
       f.html
       f.json {render json: @expense}
@@ -53,20 +53,6 @@ class ExpensesController < ApplicationController
     redirect_to user_path(current_user.id), notice: "Expense deleted"
   end
 
-  def pending
-    @expenses = Expense.pending
-  end
-
-
-  def approved
-    @expenses = Expense.approved
-  end
-
-
-  def not_approved
-    @expenses = Expense.not_approved
-  end
-
   private
 
   def set_expense
@@ -75,7 +61,7 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:date, :department_id, :description, :production_id, :receipt, :status, :total, :user_id, :vendor)
+    params.require(:expense).permit(:date, :department_id, :description, :production_id, :status, :total, :user_id, :vendor)
   end
 
 end

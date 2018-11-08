@@ -113,7 +113,7 @@ Expense.prototype.formatShow = function(){
   let expenseHtml = `
   <h3>Vendor: ${this.vendor}</h3><br>
   <p><strong>Date: </strong>${formatDate(this.date)}</p>
-  <p><strong>Total: </strong>$${this.total}</p>
+  <p><strong>Total: </strong>${total.format(this.total)}</p>
   <p><strong>Production: </strong>${ this.production }</p>
   <p><strong>Department: </strong>${ this.department }</p>
   <p><strong>Submitted by: </strong>${ this.userName }</p>
