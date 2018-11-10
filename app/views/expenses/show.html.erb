@@ -7,4 +7,4 @@
 <p><strong>Submitted by: </strong><%= @expense.user_name %></p>
 <p><strong>Description: </strong><%= @expense.description ? @expense.description : "None" %></p><br />
 
-<p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %> | <%= link_to "Back to My Expenses", user_expenses_path(current_user) %></p>
+<p><%= link_to "Edit Expense", edit_user_expense_path(current_user, @expense) %> | <%= link_to "Delete Expense", expense_path(@expense), method: :delete %></p>

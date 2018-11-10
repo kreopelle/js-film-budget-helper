@@ -118,7 +118,7 @@ Expense.prototype.formatShow = function(){
   <p><strong>Department: </strong>${ this.department }</p>
   <p><strong>Submitted by: </strong>${ this.userName }</p>
   <p><strong>Description: </strong>${this.description || "None"}</p><br />
-  <p><a href="/users/${this.userId}/expenses/${this.id}/edit">Edit Expense</a> | <a data-confirm="Are you sure you'd like to delete this expense?" data-method="delete" href="/users/${this.userId}/expenses/${this.id}/" rel="nofollow">Delete Expense</a> | <a href="/users/${this.userId}/expenses">Back to My Expenses</a></p><br>
+  <p><a href="/users/${this.userId}/expenses/${this.id}/edit">Edit Expense</a> | <a data-confirm="Are you sure you'd like to delete this expense?" data-method="delete" href="/users/${this.userId}/expenses/${this.id}/" rel="nofollow">Delete Expense</a></p><br>
   <button class="next-expense" data-user="${this.userId}" data-id="${this.id}">Next</button>
   `
   return expenseHtml
