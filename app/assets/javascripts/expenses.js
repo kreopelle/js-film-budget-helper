@@ -45,12 +45,45 @@ const attachListeners = () => {
 }
 
 const getExpenses = (userId) => {
-  fetch(`/users/${userId}/expenses.json`)
+  fetch(`/users/${userId}/expenses`, {
+    headers: {
+      "Accept": "application/json"
+    }
+  })
   .then(res => res.json())
   .then(expenses => {
-    $('#app-container').html('<h2>My Expenses</h2><br />')
+    $('#app-container').html(`<h2>My Expenses</h2><button data-id="${userId}" id="total-sort" onclick="attachSortListener(event)">Total Sort</button><br />`)
     let expenseColumns = ''
     expenses.forEach(expense => {
+      let newExpense = new Expense(expense)
+      expenseColumns += newExpense.expenseColumn()
+    })
+    let expenseHeadings = ["Vendor", "Date", "Department", "Total", "Details"]
+    $('#app-container').append(fillTable(expenseHeadings, expenseColumns))
+  })
+}
+
+function attachSortListener(event) {
+  $('#total-sort').on('click', (e) => {
+    let userId = $(e.target).attr("data-id")
+    totalSort(userId)
+  })
+}
+
+function totalSort(userId){
+    fetch(`/users/${userId}/expenses`, {
+    headers: {
+      "Accept": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(expenses => {
+    let sortedExpenses = expenses.sort(function (a,b) {
+      return a.total - b.total
+    })
+    console.log(sortedExpenses)
+    let expenseColumns = ''
+    sortedExpenses.forEach(expense => {
       let newExpense = new Expense(expense)
       expenseColumns += newExpense.expenseColumn()
     })

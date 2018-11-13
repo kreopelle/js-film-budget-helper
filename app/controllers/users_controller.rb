@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @productions = Production.all if current_user.admin
+    respond_to do |f|
+      f.html
+      f.json {render json: current_user}
+    end
   end
 
   def new
