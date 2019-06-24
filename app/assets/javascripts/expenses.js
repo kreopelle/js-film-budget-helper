@@ -81,7 +81,6 @@ function totalSort(userId){
     let sortedExpenses = expenses.sort(function (a,b) {
       return a.total - b.total
     })
-    console.log(sortedExpenses)
     let expenseColumns = ''
     sortedExpenses.forEach(expense => {
       let newExpense = new Expense(expense)
