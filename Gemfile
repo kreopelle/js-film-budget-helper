@@ -10,9 +10,6 @@ gem 'rails', '~> 5.2.1'
 # Use postgres as the database for Active Record for Heroku
 gem 'pg'
 
-# Use sqlite3 as development database
-gem 'sqlite3'
-
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
